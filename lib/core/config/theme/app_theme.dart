@@ -10,9 +10,9 @@ abstract class AppThemeLight {
       useMaterial3: true,
       colorScheme: colorScheme,
 
-      bottomNavigationBarTheme: BottomNavigationBarThemeData(
+      bottomNavigationBarTheme: const BottomNavigationBarThemeData(
         type: BottomNavigationBarType.fixed,
-        selectedLabelStyle: const TextStyle(
+        selectedLabelStyle: TextStyle(
           fontWeight: FontWeight.w400,
           fontSize: AppSizes.font_12,
           fontFamily: AppFonts.baloo,
@@ -79,7 +79,7 @@ abstract class AppThemeLight {
       ),
 
       inputDecorationTheme: InputDecorationTheme(
-        contentPadding: EdgeInsets.symmetric(
+        contentPadding: const EdgeInsets.symmetric(
           vertical: 0,
           horizontal: AppSizes.padding_16,
         ),
@@ -119,7 +119,7 @@ abstract class AppThemeLight {
         ),
       ),
 
-      progressIndicatorTheme: ProgressIndicatorThemeData(
+      progressIndicatorTheme: const ProgressIndicatorThemeData(
         color: AppColorsLight.orange,
       ),
       textTheme: textTheme,

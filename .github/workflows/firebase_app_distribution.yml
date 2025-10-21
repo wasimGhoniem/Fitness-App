@@ -1,0 +1,70 @@
+name: Android Firebase App Distribution
+
+on:
+  push:
+    branches:
+      - develop
+
+jobs:
+  distribute_to_firebase:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install GitHub CLI
+        run: sudo apt-get install -y gh
+
+      - name: Check for open PRs targeting develop
+        id: check_prs
+        run: |
+          prs=$(gh pr list --state open --base develop --json number --jq 'length')
+          echo "Open PRs targeting develop: $prs"
+          echo "prs_count=$prs" >> $GITHUB_OUTPUT
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up JDK 17
+        if: steps.check_prs.outputs.prs_count == '0'
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Set up Flutter
+        if: steps.check_prs.outputs.prs_count == '0'
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.29.3'
+
+      - name: Cache Flutter dependencies
+        if: steps.check_prs.outputs.prs_count == '0'
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.pub-cache
+          key: ${{ runner.os }}-pub-${{ hashFiles('pubspec.lock') }}
+
+      - name: Install dependencies
+        if: steps.check_prs.outputs.prs_count == '0'
+        run: flutter pub get
+
+      - name: Build android apk
+        if: steps.check_prs.outputs.prs_count == '0'
+        run: flutter build apk --release
+
+      - name: Upload APK artifact
+        if: steps.check_prs.outputs.prs_count == '0'
+        uses: actions/upload-artifact@v4
+        with:
+          name: app-release
+          path: build/app/outputs/flutter-apk/app-release.apk
+
+      - name: Upload to Firebase App Distribution
+        if: steps.check_prs.outputs.prs_count == '0'
+        uses: wzieba/Firebase-Distribution-Github-Action@v1
+        with:
+          appId: ${{ secrets.FIREBASE_ANDROID_APP_ID }}
+          serviceCredentialsFileContent: ${{ secrets.FIREBASE_PROJECT_CREDENTIALS_JSON }}
+          groups: testers
+          file: build/app/outputs/flutter-apk/app-release.apk
