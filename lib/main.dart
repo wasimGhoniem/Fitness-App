@@ -11,9 +11,11 @@ import 'package:fitness_app/core/utils/constants/sizes.dart';
 import 'package:fitness_app/firebase_options.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
 void main() async {
+  await dotenv.load(fileName: AppConstants.envKey);
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
