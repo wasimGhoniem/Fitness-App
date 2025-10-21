@@ -1,0 +1,44 @@
+# This workflow runs a series of checks on every pull request.
+name: Flutter CI Checks
+
+on:
+  # Trigger the workflow on all pull requests
+  pull_request:
+    branches:
+      - "**"
+
+jobs:
+  # The "lint" job will run all our checks
+  lint:
+    # Use the latest version of Ubuntu
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Check out the code from the repository
+      - name: Checkout source code
+        uses: actions/checkout@v4
+
+      # Step 2: Set up the Flutter environment
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable' # Use the stable channel of Flutter
+          cache: true       # Cache Flutter dependencies for faster runs
+
+      # Step 3: Install project dependencies from pubspec.yaml
+      - name: Install dependencies
+        run: flutter pub get
+
+      # Step 4: Generate necessary code (e.g., for json_serializable, retrofit)
+      - name: Generate code with build_runner
+        run: flutter pub run build_runner build --delete-conflicting-outputs
+
+      # Step 5: Run the Dart analyzer to find code issues
+      # This will use your analysis_options.yaml file to ignore generated files
+      - name: Run Flutter Analyzer
+        run: flutter analyze
+
+      # Step 6: Check for code formatting issues
+      # This command will fail the job if any files are not correctly formatted
+      - name: Check for formatting issues
+        run: dart format --output=none --set-exit-if-changed .
