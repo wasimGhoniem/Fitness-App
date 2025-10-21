@@ -133,7 +133,7 @@ abstract class AppThemeLight {
       onPrimary: AppColorsLight.white,
       secondary: AppColorsLight.black,
       onSecondary: AppColorsLight.white,
-      surface: AppColorsLight.black,
+      surface: AppColorsLight.white,
       onSurface: AppColorsLight.white,
       error: AppColorsLight.red,
       onError: AppColorsLight.white,
