@@ -7,6 +7,7 @@ on:
     types: [ opened, edited ]
     branches:
       - '**'
+
 jobs:
   analyze:
     name: Dart Linter Analyze
@@ -27,6 +28,10 @@ jobs:
 
       - name: Install dependencies
         run: flutter pub get
+
+      # 🧩 شغل الـ build_runner قبل التحليل
+      - name: Run build_runner
+        run: flutter pub run build_runner build --delete-conflicting-outputs
 
       - name: Analyze code
         run: flutter analyze
