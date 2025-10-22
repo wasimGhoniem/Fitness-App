@@ -60,6 +60,7 @@ flutter:
 
   assets:
     - assets/images/
+    - assets/icons/
     - assets/translations/
     - .env
   fonts:
@@ -83,7 +84,9 @@ flutter:
 
 
 flutter_assets:
-  assets_path: assets/images/
+  assets_path:
+    - assets/images/
+    - assets/icons/
   output_path: lib\core\utils\constants\
   filename: app_assets.dart
  

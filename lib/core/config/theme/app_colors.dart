@@ -11,7 +11,7 @@ abstract class AppColorsLight {
 
   static const MaterialColor black = MaterialColor(0xFF000000, <int, Color>{
     10: Color(0xFFD9D9D9), // lightest gray
-    20: Color(0xFFD9D9D9),
+    20: Color(0xFFD3D3D3),
     30: Color(0xFFBDBDBD),
     40: Color(0xFF9E9E9E),
     50: Color(0xFF757575),
@@ -33,17 +33,19 @@ abstract class AppColorsLight {
     90: Color(0xFFFF7043),
     100: Color(0xFFFF4100), // base vibrant orange
   });
-  static const MaterialColor darkOrange = MaterialColor(0xFFBF3100, <int, Color>{
-    10: Color(0xFFFFF3E0), // lightest
-    20: Color(0xFFFFCCBC),
-    30: Color(0xFFFFA270),
-    40: Color(0xFFFF7043),
-    50: Color(0xFFFF5722),
-    60: Color(0xFFDD3E00),
-    70: Color(0xFFBF3100),
-    80: Color(0xFF802100),
-    90: Color(0xFF401000),
-    100: Color(0xFF000000), // deepest shade
-  });
-
+  static const MaterialColor darkOrange = MaterialColor(
+    0xFFBF3100,
+    <int, Color>{
+      10: Color(0xFFFFF3E0), // lightest
+      20: Color(0xFFFFCCBC),
+      30: Color(0xFFFFA270),
+      40: Color(0xFFFF7043),
+      50: Color(0xFFFF5722),
+      60: Color(0xFFDD3E00),
+      70: Color(0xFFBF3100),
+      80: Color(0xFF802100),
+      90: Color(0xFF401000),
+      100: Color(0xFF000000), // deepest shade
+    },
+  );
 }

@@ -1,3 +1,4 @@
+import 'package:fitness_app/core/config/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class CustomPasswordTextFormField extends StatefulWidget {
@@ -7,13 +8,11 @@ class CustomPasswordTextFormField extends StatefulWidget {
     this.validator,
     required this.controller,
     required this.hint,
-    required this.label,
   });
   final void Function(String)? onChanged;
   final String? Function(String?)? validator;
   final TextEditingController controller;
   final String hint;
-  final String label;
 
   @override
   State<CustomPasswordTextFormField> createState() =>
@@ -39,9 +38,14 @@ class _CustomPasswordTextFormFieldState
       controller: widget.controller,
       decoration: InputDecoration(
         hintText: widget.hint,
-        labelText: widget.label,
         suffixIcon: IconButton(
-          icon: Icon(_obscureText ? Icons.visibility_off : Icons.visibility),
+          icon: Icon(
+            _obscureText
+                ? Icons.visibility_off_outlined
+                : Icons.visibility_outlined,
+          ),
+          color: AppColorsLight.black[20],
+          iconSize: 20,
           onPressed: _togglePasswordVisibility,
         ),
       ),
