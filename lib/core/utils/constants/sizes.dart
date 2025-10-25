@@ -20,6 +20,7 @@ abstract class AppSizes {
   static const double icon_12 = 12.0;
   static const double icon_16 = 16.0;
   static const double icon_18 = 18.0;
+  static const double icon_20 = 20.0;
   static const double icon_24 = 24.0;
   static const double icon_30 = 30.0;
   static const double icon_32 = 32.0;
