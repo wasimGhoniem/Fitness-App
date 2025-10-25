@@ -9,6 +9,4 @@ part 'auth_api_service.g.dart';
 abstract class AuthApiService {
   @factoryMethod
   factory AuthApiService(Dio dio) = _AuthApiService;
-
-
 }

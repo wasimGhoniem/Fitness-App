@@ -11,5 +11,13 @@
     "create_an_account": "CREATE AN ACCOUNT",
     "first_name": "First Name",
     "last_name": "Last Name",
-    "already_have_an_account": "Already Have An Account ?"
+    "already_have_an_account": "Already Have An Account ?",
+    "skip": "Skip",
+    "next": "Next",
+    "back" : "Back",
+    "do_it" : "Do It",
+    "title1": "the price of excellence  \nis discipline",
+    "title2": "Fitness has never been so \nmuch fun",
+    "title3": "NO MORE EXCUSES \nDo It Now",
+    "description1": "Lorem ipsum dolor sit amet consectetur. Eu urna ut gravida quis id pretium purus. Mauris massa"
 }
