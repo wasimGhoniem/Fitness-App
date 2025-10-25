@@ -27,6 +27,7 @@ jobs:
         run: |
           dart --version
           flutter --version
+      
       # ✅ إنشاء ملف .env وهمي
       - name: Create dummy .env file if not exists
         run: |
@@ -38,6 +39,60 @@ jobs:
           else
             echo ".env file already exists"
           fi
+      
+      # 📁 إنشاء ملف analysis_options.yaml
+      - name: Create analysis_options.yaml
+        run: |
+          cat > analysis_options.yaml << EOF
+analyzer:
+  exclude:
+    - "**/*.g.dart"
+    - "**/*.freezed.dart"
+    - "**/*.gr.dart"
+    - "**/*.gen.dart"
+
+  errors:
+    unused_field: warning
+
+linter:
+  rules:
+    # Error Rules
+    - always_declare_return_types
+    - always_use_package_imports
+    - avoid_dynamic_calls
+    - avoid_void_async
+    - control_flow_in_finally
+    - empty_catches
+    - use_build_context_synchronously
+    - use_rethrow_when_possible
+
+    # Style Rules
+    - always_require_non_null_named_parameters
+    - annotate_overrides
+    - camel_case_types
+    - file_names
+    - library_names
+    - no_leading_underscores_for_local_identifiers
+    - prefer_final_fields
+    - prefer_final_locals
+    - unnecessary_brace_in_string_interps
+    - unnecessary_getters_setters
+
+    # Best Practices
+    - prefer_const_constructors
+    - prefer_const_declarations
+    - prefer_final_parameters
+    - prefer_foreach
+    - prefer_is_empty
+    - prefer_is_not_empty
+    - prefer_iterable_whereType
+    - prefer_null_aware_operators
+    - prefer_spread_collections
+    - unnecessary_const
+    - unnecessary_new
+    - unnecessary_parenthesis
+EOF
+
       - name: Install dependencies
         run: flutter pub get
 
@@ -50,6 +105,7 @@ jobs:
         run: |
           flutter pub run easy_localization:generate -S assets/translations -O lib/core/localization
           flutter pub run easy_localization:generate -S assets/translations -O lib/core/localization -f keys -o locale_keys.g.dart
+      
       # 🔍 تحليل الكود
       - name: Analyze code
-        run: flutter analyze --no-fatal-infos
+        run: flutter analyze
