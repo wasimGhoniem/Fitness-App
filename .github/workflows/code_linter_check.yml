@@ -1,4 +1,4 @@
-name: Code Check & Tests (on Push or PR)
+name: Code Check (on Push or PR)
 
 on:
   push:
@@ -10,8 +10,8 @@ on:
       - '**'
 
 jobs:
-  analyze_and_test:
-    name: Analyze & Test
+  analyze:
+    name: Dart Linter Analyze
     runs-on: ubuntu-latest
 
     steps:
@@ -57,17 +57,6 @@ jobs:
       - name: Analyze code
         run: flutter analyze
 
-      # ✨ تنسيق الكود
-      - name: Format code
+      # ✨ التأكد من تنسيق الكود (بدون تعديلات تلقائية)
+      - name: Check code formatting
         run: dart format --set-exit-if-changed .
-
-      # 🧪 تشغيل Unit Tests + تغطية
-      - name: Run tests with coverage
-        run: flutter test --coverage
-
-      # 📊 رفع ملف التغطية كـ artifact (اختياري)
-      - name: Upload coverage report
-        uses: actions/upload-artifact@v4
-        with:
-          name: coverage-report
-          path: coverage/lcov.info
