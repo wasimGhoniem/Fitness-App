@@ -1,10 +1,11 @@
-name: Code Check By Dart Linter (on Push or PR)
+name: Code Check (on Push or PR)
+
 on:
   push:
     branches:
       - '**'
   pull_request:
-    types: [ opened, edited ]
+    types: [opened, edited]
     branches:
       - '**'
 
@@ -12,9 +13,10 @@ jobs:
   analyze:
     name: Dart Linter Analyze
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
@@ -25,45 +27,85 @@ jobs:
         run: |
           dart --version
           flutter --version
+      
+      # ✅ إنشاء ملف .env وهمي
+      - name: Create dummy .env file if not exists
+        run: |
+          if [ ! -f ".env" ]; then
+            echo "Creating dummy .env file..."
+            echo "API_URL=https://example.com" >> .env
+            echo "SUPABASE_URL=https://dummy.supabase.co" >> .env
+            echo "SUPABASE_KEY=dummy_key" >> .env
+          else
+            echo ".env file already exists"
+          fi
+      
+      # 📁 إنشاء ملف analysis_options.yaml
+      - name: Create analysis_options.yaml
+        run: |
+          cat > analysis_options.yaml << EOF
+analyzer:
+  exclude:
+    - "**/*.g.dart"
+    - "**/*.freezed.dart"
+    - "**/*.gr.dart"
+    - "**/*.gen.dart"
+
+  errors:
+    unused_field: warning
+
+linter:
+  rules:
+    # Error Rules
+    - always_declare_return_types
+    - always_use_package_imports
+    - avoid_dynamic_calls
+    - avoid_void_async
+    - control_flow_in_finally
+    - empty_catches
+    - use_build_context_synchronously
+    - use_rethrow_when_possible
+
+    # Style Rules
+    - always_require_non_null_named_parameters
+    - annotate_overrides
+    - camel_case_types
+    - file_names
+    - library_names
+    - no_leading_underscores_for_local_identifiers
+    - prefer_final_fields
+    - prefer_final_locals
+    - unnecessary_brace_in_string_interps
+    - unnecessary_getters_setters
+
+    # Best Practices
+    - prefer_const_constructors
+    - prefer_const_declarations
+    - prefer_final_parameters
+    - prefer_foreach
+    - prefer_is_empty
+    - prefer_is_not_empty
+    - prefer_iterable_whereType
+    - prefer_null_aware_operators
+    - prefer_spread_collections
+    - unnecessary_const
+    - unnecessary_new
+    - unnecessary_parenthesis
+EOF
 
       - name: Install dependencies
         run: flutter pub get
 
-      # 🧩 شغل الـ build_runner قبل التحليل
+      # 🧩 تشغيل build_runner
       - name: Run build_runner
         run: flutter pub run build_runner build --delete-conflicting-outputs
 
+      # 🌍 توليد ملفات الترجمة
+      - name: Generate localization files
+        run: |
+          flutter pub run easy_localization:generate -S assets/translations -O lib/core/localization
+          flutter pub run easy_localization:generate -S assets/translations -O lib/core/localization -f keys -o locale_keys.g.dart
+      
+      # 🔍 تحليل الكود
       - name: Analyze code
         run: flutter analyze
-
-      - name: Format code
-        run: dart format .
-
-      - name: Check for changes
-        id: check_changes
-        run: |
-          if git diff --quiet; then
-            echo "No changes detected."
-            echo "commit_changes=false" >> $GITHUB_ENV
-          else
-            echo "Changes detected."
-            echo "commit_changes=true" >> $GITHUB_ENV
-          fi
-
-      - name: Get current branch name
-        id: get_branch
-        run: |
-          echo "GITHUB_REF=${GITHUB_REF}"
-          echo "branch_name=$(echo ${GITHUB_REF#refs/heads/})" >> $GITHUB_ENV
-          echo "Branch name: $(echo ${GITHUB_REF#refs/heads/})"
-
-      - name: Commit changes
-        if: env.commit_changes == 'true'
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          git config --global user.email "bot@example.com"
-          git config --global user.name "GitHub Bot"
-          git add .
-          git commit -m "Automated code formatting"
-          git push origin ${GITHUB_REF#refs/heads/}

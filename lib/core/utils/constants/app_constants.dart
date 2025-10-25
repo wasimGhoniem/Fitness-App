@@ -20,4 +20,5 @@ abstract class AppConstants {
   static const String firebaseRemoteExecutor = 'firebaseRemoteExecutor';
   static const String firebaseRealTimeDatabase = 'firebaseRealTimeDatabase';
  static const String envKey='.env';
+  static const String onBoarding = 'onBoarding';
 }

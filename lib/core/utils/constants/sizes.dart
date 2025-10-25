@@ -51,6 +51,7 @@ abstract class AppSizes {
   static const double buttonHigh_38 = 38;
   static const double buttonWidthInfinity = double.infinity;
   static const double buttonWidth_80 = 80.0;
+  static const double buttonWidth_60 = 60.0;
 
   // Default Spacing Between items
   static const double spaceBetweenItems_2 = 2.0;
@@ -70,8 +71,11 @@ abstract class AppSizes {
   static const double spaceBetweenItems_48 = 48.0;
   static const double spaceBetweenItems_50 = 50.0;
 
-  // Border Radius
+  // Glass Container Height
+  static const double glassContainerHeight_230 = 230.0;
 
+
+  // Border Radius
   static const double borderRadius_2 = 2.0;
   static const double borderRadius_4 = 4.0;
   static const double borderRadius_8 = 8.0;

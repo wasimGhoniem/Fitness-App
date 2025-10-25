@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:fitness_app/core/config/routing/app_routes.dart';
 import 'package:fitness_app/core/config/routing/route_generator.dart';
 import 'package:fitness_app/core/config/theme/app_theme.dart';
 import 'package:fitness_app/core/di/di.dart';
@@ -54,6 +55,7 @@ class FitnessApp extends StatelessWidget {
               locale: localeState,
               theme: AppThemeLight.lightTheme,
               onGenerateRoute: RouteGenerator.getRoute,
+              initialRoute: AppRoutes.onBoardingRoute,
               builder: (context, child) => ResponsiveScaledBox(
                 width: ResponsiveValue<double>(
                   context,
