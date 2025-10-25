@@ -1,12 +1,16 @@
 name: Flutter Unit Testing Action
+
 on:
   pull_request:
+
 jobs:
   testing:
     runs-on: ubuntu-latest
+
     steps:
       - name: Clone repository
         uses: actions/checkout@v4
+
       - name: Delete pubspec.lock
         run: |
           if [ -f pubspec.lock ]; then
@@ -15,25 +19,33 @@ jobs:
           else
             echo "pubspec.lock not found, skipping"
           fi
-
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
         with:
           channel: stable
+
+      # ✅ إنشاء ملف .env قبل أي خطوة تعتمد عليه
+      - name: Create fake .env file
+        run: |
+          echo "API_URL=https://dummy.api" > .env
+          echo "SUPABASE_URL=https://dummy.supabase.co" >> .env
+          echo "SUPABASE_KEY=dummy_key" >> .env
       - name: Check Flutter version
         run: flutter --version
+
       - name: Install dependencies
         run: flutter pub get
+
       - name: Generate localization files
         run: |
           flutter pub run easy_localization:generate -S assets/translations -O lib/core/localization
           flutter pub run easy_localization:generate -S assets/translations -O lib/core/localization -f keys -o locale_keys.g.dart
-      # :white_check_mark: Clean build_runner cache to avoid conflicts in CI
       - name: Clean build_runner cache
         run: flutter pub run build_runner clean
-      # :white_check_mark: Re-generate code (json_serializable, retrofit, mockito)
+
       - name: Generate code (json_serializable, retrofit, mockito)
         run: flutter pub run build_runner build --delete-conflicting-outputs
+
       - name: Check if tests exist
         run: |
           if [ -d "test" ] && [ "$(find test -name "*.dart" -type f | wc -l)" -gt 0 ]; then
@@ -44,6 +56,7 @@ jobs:
           fi
       - name: Run tests
         run: flutter test --coverage
+
       - name: Upload coverage reports
         uses: codecov/codecov-action@v4
         with:
