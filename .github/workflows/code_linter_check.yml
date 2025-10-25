@@ -1,4 +1,4 @@
-name: Code Check By Dart Linter (on Push or PR)
+name: Code Check & Tests (on Push or PR)
 
 on:
   push:
@@ -10,28 +10,25 @@ on:
       - '**'
 
 jobs:
-  analyze:
-    name: Dart Linter Analyze
+  analyze_and_test:
+    name: Analyze & Test
     runs-on: ubuntu-latest
 
     steps:
-      # 🧩 سحب الكود من الريبو
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
-      # ⚙️ إعداد Flutter
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
           flutter-version: '3.35.4'
 
-      # 🧾 طباعة الإصدارات
       - name: Print Dart and Flutter versions
         run: |
           dart --version
           flutter --version
 
-      # ✅ إنشاء ملف .env وهمي لتفادي الأخطاء
+      # ✅ إنشاء ملف .env وهمي
       - name: Create dummy .env file if not exists
         run: |
           if [ ! -f ".env" ]; then
@@ -43,55 +40,34 @@ jobs:
             echo ".env file already exists"
           fi
 
-      # 📦 تثبيت الحزم
       - name: Install dependencies
         run: flutter pub get
 
-      # 🔁 تشغيل build_runner قبل التحليل
+      # 🧩 تشغيل build_runner
       - name: Run build_runner
         run: flutter pub run build_runner build --delete-conflicting-outputs
 
-      # 🌍 توليد ملفات الترجمة (Easy Localization)
+      # 🌍 توليد ملفات الترجمة
       - name: Generate localization files
         run: |
           flutter pub run easy_localization:generate -S assets/translations -O lib/core/localization
           flutter pub run easy_localization:generate -S assets/translations -O lib/core/localization -f keys -o locale_keys.g.dart
 
-      # 🔍 تحليل الكود (Dart Linter)
+      # 🔍 تحليل الكود
       - name: Analyze code
         run: flutter analyze
 
-      # ✨ تنسيق الكود تلقائيًا
+      # ✨ تنسيق الكود
       - name: Format code
-        run: dart format .
+        run: dart format --set-exit-if-changed .
 
-      # 🔁 التحقق من وجود تغييرات بعد التنسيق
-      - name: Check for changes
-        id: check_changes
-        run: |
-          if git diff --quiet; then
-            echo "No changes detected."
-            echo "commit_changes=false" >> $GITHUB_OUTPUT
-          else
-            echo "Changes detected."
-            echo "commit_changes=true" >> $GITHUB_OUTPUT
-          fi
+      # 🧪 تشغيل Unit Tests + تغطية
+      - name: Run tests with coverage
+        run: flutter test --coverage
 
-      # 🪄 الحصول على اسم الفرع الحالي
-      - name: Get current branch name
-        id: get_branch
-        run: |
-          echo "branch_name=${GITHUB_REF#refs/heads/}" >> $GITHUB_OUTPUT
-          echo "Branch name: ${GITHUB_REF#refs/heads/}"
-
-      # 💾 عمل Commit & Push للتغييرات التلقائية
-      - name: Commit changes
-        if: steps.check_changes.outputs.commit_changes == 'true'
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          git config --global user.email "bot@example.com"
-          git config --global user.name "GitHub Bot"
-          git add .
-          git commit -m "Automated code formatting"
-          git push origin ${GITHUB_REF#refs/heads/}
+      # 📊 رفع ملف التغطية كـ artifact (اختياري)
+      - name: Upload coverage report
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-report
+          path: coverage/lcov.info
