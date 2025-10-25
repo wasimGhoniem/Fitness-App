@@ -1,6 +1,6 @@
 {
-    "hey_there": "Hey There,",
-    "welcome_back": "WELCOME BACK,",
+    "hey_there": "Hey There",
+    "welcome_back": "WELCOME BACK",
     "login": "Login",
     "email": "Email",
     "password": "Password",
@@ -11,5 +11,12 @@
     "create_an_account": "CREATE AN ACCOUNT",
     "first_name": "First Name",
     "last_name": "Last Name",
-    "already_have_an_account": "Already Have An Account ?"
+    "already_have_an_account": "Already Have An Account ?",
+    "welcome_back_message": "Welcome back! You have logged in successfully.",
+    "ok": "OK",
+    "success": "Success",
+    "explore": "Explore",
+    "smart_coach": "Smart Coach",
+    "workouts": "Workouts",
+    "profile": "Profile"
 }

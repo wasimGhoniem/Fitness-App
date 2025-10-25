@@ -42,7 +42,6 @@ class CustomElevatedButton extends StatelessWidget {
                   ),
                 ),
                 child: SizedBox(
-                  //need to test
                   width: 24,
                   height: 24,
                   child: Theme(

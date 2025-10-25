@@ -20,6 +20,7 @@ abstract class AppSizes {
   static const double icon_12 = 12.0;
   static const double icon_16 = 16.0;
   static const double icon_18 = 18.0;
+  static const double icon_20 = 20.0;
   static const double icon_24 = 24.0;
   static const double icon_30 = 30.0;
   static const double icon_32 = 32.0;
@@ -69,6 +70,8 @@ abstract class AppSizes {
   static const double spaceBetweenItems_44 = 44.0;
   static const double spaceBetweenItems_48 = 48.0;
   static const double spaceBetweenItems_50 = 50.0;
+  static const double spaceBetweenItems_85 = 85.0;
+
 
   // Border Radius
 
@@ -105,6 +108,13 @@ abstract class AppSizes {
 
   //app bar height
   static const double appBarHeight_29 = 29.0;
+  //nav bar height
+  static const double navBarHeight_69 = 69.0;
+
+  // image sizes
+  static const double imageWidth_70=70;
+  static const double imageHeight_48=48;
+
 
   // break points
 

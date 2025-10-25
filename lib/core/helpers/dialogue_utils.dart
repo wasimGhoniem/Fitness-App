@@ -1,3 +1,4 @@
+import 'package:fitness_app/core/config/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 
 abstract class DialogueUtils {
@@ -48,7 +49,9 @@ abstract class DialogueUtils {
           ),
           title: Text(
             title ?? '',
-            style: Theme.of(context).textTheme.bodySmall,
+            style: Theme.of(
+              context,
+            ).textTheme.bodySmall!.copyWith(color: AppColorsLight.black),
           ),
         );
       },

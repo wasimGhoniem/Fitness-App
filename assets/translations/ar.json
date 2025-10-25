@@ -11,5 +11,12 @@
     "create_an_account": "إنشاء حساب جديد",
     "first_name": "الاسم الأول",
     "last_name": "اسم العائلة",
-    "already_have_an_account": "هل لديك حساب بالفعل؟"
+    "already_have_an_account": "هل لديك حساب بالفعل؟",
+    "welcome_back_message": "مرحباً بعودتك! تم تسجيل الدخول بنجاح.",
+    "ok": "حسناً",
+    "success": "نجاح",
+    "explore": "استكشف",
+    "smart_coach": "المدرب الذكي",
+    "workouts": "التمارين",
+    "profile": "الملف الشخصي"
 }
