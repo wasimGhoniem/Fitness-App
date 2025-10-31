@@ -11,5 +11,8 @@
     "create_an_account": "إنشاء حساب جديد",
     "first_name": "الاسم الأول",
     "last_name": "اسم العائلة",
-    "already_have_an_account": "هل لديك حساب بالفعل؟"
+    "already_have_an_account": "هل لديك حساب بالفعل؟",
+    "food_recommendation": "توصيات الطعام",
+    "retry": "إعادة المحاولة",
+    "no_meals": "لا توجد وجبات"
 }
