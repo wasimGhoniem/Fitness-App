@@ -31,7 +31,7 @@ class MealGridItem extends StatelessWidget {
                   image: imageProvider,
                   fit: BoxFit.cover,
                   colorFilter: ColorFilter.mode(
-                    Colors.black.withOpacity(0.3),
+                    Colors.black.withValues(alpha: 0.3),
                     BlendMode.darken,
                   ),
                 ),
@@ -43,7 +43,7 @@ class MealGridItem extends StatelessWidget {
               child: Container(color: Colors.grey[300]),
             ),
             errorWidget: (context, url, error) => Container(
-              color: Colors.grey.withOpacity(0.1),
+              color: Colors.grey.withValues(alpha: 0.1),
               child: const Icon(Icons.broken_image, color: Colors.grey),
             ),
           ),
