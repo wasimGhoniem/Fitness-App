@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:fitness_app/core/errors/failure.dart';
+import 'package:fitness_app/features/food/domain/entity/meals_categories_response_entity.dart';
 import 'package:fitness_app/features/mainLayout/tabs/explore/domain/entities/muscle_group_details_response_entity.dart';
 import 'package:fitness_app/features/mainLayout/tabs/explore/domain/entities/muscle_response_entity.dart';
 import 'package:fitness_app/features/mainLayout/tabs/explore/domain/entities/muscles_groups_response_entity.dart';
@@ -19,33 +20,42 @@ class ExploreState extends Equatable {
     this.isMusclesbyGroupsIdLoading = true,
     this.musclesGroupsbyGroupIdFailure,
     this.muscleGroupDetailsResponseEntity,
+    this.isCategoriesLoading = true,
+    this.categoriesFailure,
+    this.categoriesResponse,
   });
   final bool isToMuscleLoading;
   final bool isProfileLoading;
   final bool isMusclesGroupsLoading;
   final bool isMusclesbyGroupsIdLoading;
+  final bool isCategoriesLoading;
   final Failure? musclesFailure;
   final Failure? profileFailure;
   final Failure? musclesGroupsFailure;
   final Failure? musclesGroupsbyGroupIdFailure;
+  final Failure? categoriesFailure;
   final MuscleResponseEntity? muscleResponseEntity;
   final ProfileDataResponseEntity? profileDataResponseEntity;
   final MusclesGroupsResponseEntity? musclesGroupsResponseEntity;
   final MuscleGroupDetailsResponseEntity? muscleGroupDetailsResponseEntity;
+  final MealsCategoriesResponseEntity? categoriesResponse;
 
   ExploreState copyWith({
     MuscleResponseEntity? muscleResponseEntity,
     ProfileDataResponseEntity? profileDataResponseEntity,
     MusclesGroupsResponseEntity? musclesGroupsResponseEntity,
     MuscleGroupDetailsResponseEntity? muscleGroupDetailsResponseEntity,
+    MealsCategoriesResponseEntity? categoriesResponse,
     bool? isToMuscleLoading,
     bool? isProfileLoading,
     bool? isMusclesGroupsLoading,
     bool? isMusclesbyGroupsIdLoading,
+    bool? isCategoriesLoading,
     Failure? musclesFailure,
     Failure? profileFailure,
     Failure? musclesGroupsFailure,
     Failure? musclesGroupsbyGroupIdFailure,
+    Failure? categoriesFailure,
   }) {
     return ExploreState(
       muscleResponseEntity: muscleResponseEntity ?? this.muscleResponseEntity,
@@ -67,6 +77,9 @@ class ExploreState extends Equatable {
       muscleGroupDetailsResponseEntity:
           muscleGroupDetailsResponseEntity ??
           this.muscleGroupDetailsResponseEntity,
+      isCategoriesLoading: isCategoriesLoading ?? this.isCategoriesLoading,
+      categoriesFailure: categoriesFailure ?? this.categoriesFailure,
+      categoriesResponse: categoriesResponse ?? this.categoriesResponse,
     );
   }
 
@@ -84,5 +97,8 @@ class ExploreState extends Equatable {
     muscleGroupDetailsResponseEntity,
     isMusclesbyGroupsIdLoading,
     musclesGroupsbyGroupIdFailure,
+    isCategoriesLoading,
+    categoriesFailure,
+    categoriesResponse,
   ];
 }

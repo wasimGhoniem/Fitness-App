@@ -14,7 +14,8 @@ part 'explore_api_service.g.dart';
 @RestApi()
 abstract class ExploreApiService {
   @factoryMethod
-  factory ExploreApiService(Dio dio) = _ExploreApiService;
+  factory ExploreApiService(@Named(ApiConstants.fitnessDio) Dio dio) =
+      _ExploreApiService;
   //!Recommendation to day section
   @GET(ApiConstants.randomMusclesEndPoint)
   Future<MusclesResponseDto> getRandomMuscles();

@@ -1,15 +1,18 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:fitness_app/core/di/di.dart';
+import 'package:fitness_app/core/dummy/dummy_data.dart';
 import 'package:fitness_app/core/localization/locale_keys.g.dart';
 import 'package:fitness_app/core/utils/constants/app_assets.dart';
 import 'package:fitness_app/core/utils/constants/app_constants.dart';
 import 'package:fitness_app/core/utils/constants/sizes.dart';
 import 'package:fitness_app/core/widgets/glass_layout.dart';
 import 'package:fitness_app/features/mainLayout/tabs/explore/presentation/viewModel/explore_event.dart';
+import 'package:fitness_app/features/mainLayout/tabs/explore/presentation/viewModel/explore_state.dart';
 import 'package:fitness_app/features/mainLayout/tabs/explore/presentation/viewModel/explore_view_model.dart';
 import 'package:fitness_app/features/mainLayout/tabs/explore/presentation/widgets/muscles_group_by_id_list_view_bloc_builder.dart';
 import 'package:fitness_app/features/mainLayout/tabs/explore/presentation/widgets/muscles_list_view_bloc_builder.dart';
 import 'package:fitness_app/features/mainLayout/tabs/explore/presentation/widgets/profile_bloc_builder.dart';
+import 'package:fitness_app/features/mainLayout/tabs/explore/presentation/widgets/recommended_for_you_list_view.dart';
 import 'package:fitness_app/features/mainLayout/tabs/explore/presentation/widgets/recommended_text_widget.dart';
 import 'package:fitness_app/features/mainLayout/tabs/explore/presentation/widgets/sections_header.dart';
 import 'package:fitness_app/features/mainLayout/tabs/explore/presentation/widgets/taps_bloc_bloc_builder.dart';
@@ -60,6 +63,25 @@ class _ExploreScreenBodyState extends State<ExploreScreenBody> {
             onTap: () {},
           ),
           const SizedBox(height: AppSizes.spaceBetweenItems_8),
+          BlocBuilder<ExploreViewModel, ExploreState>(
+            builder: (context, state) {
+              if (state.isCategoriesLoading) {
+                return ReccomendedForYouListView(
+                  isLoading: true,
+                  musclesList: mealCategoryDummyList,
+                );
+              }
+              if (state.categoriesFailure != null) {
+                return Center(
+                  child: Text(state.categoriesFailure!.errorMessage),
+                );
+              }
+              return ReccomendedForYouListView(
+                isLoading: false,
+                musclesList: state.categoriesResponse!.categories!,
+              );
+            },
+          ),
           // const ForYouListView(),
         ],
       ),

@@ -1,4 +1,6 @@
 import 'package:fitness_app/core/errors/api_results.dart';
+import 'package:fitness_app/features/food/domain/entity/meals_categories_response_entity.dart';
+import 'package:fitness_app/features/food/domain/useCases/get_meals_categories_use_case.dart';
 import 'package:fitness_app/features/mainLayout/tabs/explore/domain/entities/muscle_group_details_response_entity.dart';
 import 'package:fitness_app/features/mainLayout/tabs/explore/domain/entities/muscle_response_entity.dart';
 import 'package:fitness_app/features/mainLayout/tabs/explore/domain/entities/muscles_groups_response_entity.dart';
@@ -15,19 +17,21 @@ import 'package:injectable/injectable.dart';
 @injectable
 class ExploreViewModel extends Cubit<ExploreState> {
   ExploreViewModel(
-    this.getMusclesByGroupIdUseCase,
-    this.getProfileDataUseCase,
-    this.getRandomMusclesUseCase,
-    this.getMusclesGroupsUseCase,
+    this._getMusclesByGroupIdUseCase,
+    this._getProfileDataUseCase,
+    this._getRandomMusclesUseCase,
+    this._getMusclesGroupsUseCase,
+    this._getMealsCategoriesUseCase,
   ) : super(const ExploreState());
 
   //!Recommendation to day section
-  GetRandomMusclesUseCase getRandomMusclesUseCase;
+  final GetRandomMusclesUseCase _getRandomMusclesUseCase;
   //!Upcoming Workouts section
-  GetMusclesGroupsUseCase getMusclesGroupsUseCase;
-  GetMusclesByGroupIdUseCase getMusclesByGroupIdUseCase;
+  final GetMusclesGroupsUseCase _getMusclesGroupsUseCase;
+  final GetMusclesByGroupIdUseCase _getMusclesByGroupIdUseCase;
   //!Profile Data
-  GetProfileDataUseCase getProfileDataUseCase;
+  final GetProfileDataUseCase _getProfileDataUseCase;
+  final GetMealsCategoriesUseCase _getMealsCategoriesUseCase;
 
   void doIntent(ExploreEvents events) {
     switch (events) {
@@ -43,10 +47,11 @@ class ExploreViewModel extends Cubit<ExploreState> {
     _getMusclesGroups();
     _getProfileData();
     _getMusclesByGroupId(id: id);
+    _getAllMealCategories();
   }
 
   Future<void> _getRandomMuscles() async {
-    final result = await getRandomMusclesUseCase.call();
+    final result = await _getRandomMusclesUseCase.call();
     switch (result) {
       case ApiSuccessResult<MuscleResponseEntity>():
         emit(
@@ -66,7 +71,7 @@ class ExploreViewModel extends Cubit<ExploreState> {
   }
 
   Future<void> _getMusclesGroups() async {
-    final result = await getMusclesGroupsUseCase.call();
+    final result = await _getMusclesGroupsUseCase.call();
     switch (result) {
       case ApiSuccessResult<MusclesGroupsResponseEntity>():
         emit(
@@ -87,7 +92,7 @@ class ExploreViewModel extends Cubit<ExploreState> {
 
   Future<void> _getMusclesByGroupId({required String id}) async {
     emit(state.copyWith(isMusclesbyGroupsIdLoading: true));
-    final result = await getMusclesByGroupIdUseCase.call(groupId: id);
+    final result = await _getMusclesByGroupIdUseCase.call(groupId: id);
     switch (result) {
       case ApiSuccessResult<MuscleGroupDetailsResponseEntity>():
         emit(
@@ -107,7 +112,7 @@ class ExploreViewModel extends Cubit<ExploreState> {
   }
 
   Future<void> _getProfileData() async {
-    final result = await getProfileDataUseCase.call();
+    final result = await _getProfileDataUseCase.call();
     switch (result) {
       case ApiSuccessResult<ProfileDataResponseEntity>():
         emit(
@@ -123,6 +128,30 @@ class ExploreViewModel extends Cubit<ExploreState> {
             profileFailure: result.failure,
           ),
         );
+    }
+  }
+
+  Future<void> _getAllMealCategories() async {
+    final result = await _getMealsCategoriesUseCase.invoke();
+
+    switch (result) {
+      case ApiSuccessResult<MealsCategoriesResponseEntity>():
+        emit(
+          state.copyWith(
+            isCategoriesLoading: false,
+            categoriesResponse: result.data,
+          ),
+        );
+        break;
+
+      case ApiErrorResult<MealsCategoriesResponseEntity>():
+        emit(
+          state.copyWith(
+            isCategoriesLoading: false,
+            categoriesFailure: result.failure,
+          ),
+        );
+        break;
     }
   }
 }
