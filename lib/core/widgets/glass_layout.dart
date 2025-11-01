@@ -29,12 +29,17 @@ class GlassLayout extends StatelessWidget {
           colorOpacity: 0.2,
           blur: 4,
         ),
-        SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: mainAxisAlignment,
-            crossAxisAlignment: crossAxisAlignment,
-            children: body,
-          ),
+        CustomScrollView(
+          slivers: [
+            SliverFillRemaining(
+              hasScrollBody: false,
+              child: Column(
+                mainAxisAlignment: mainAxisAlignment,
+                crossAxisAlignment: crossAxisAlignment,
+                children: body,
+              ),
+            ),
+          ],
         ),
       ],
     );
