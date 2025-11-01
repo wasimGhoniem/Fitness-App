@@ -1,5 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:fitness_app/core/utils/constants/api_constants.dart';
+import 'package:fitness_app/features/auth/api/model/signIn/request/sign_in_request_dto.dart';
+import 'package:fitness_app/features/auth/api/model/signIn/response/sign_in_response_dto.dart';
 import 'package:fitness_app/features/auth/api/model/signUp/request/sign_up_req_model.dart';
 import 'package:injectable/injectable.dart';
 import 'package:retrofit/error_logger.dart';
@@ -15,5 +17,8 @@ abstract class AuthApiService {
       _AuthApiService;
 
   @POST(ApiConstants.signUp)
-  Future<void> SignUp(@Body() SignUpReqModel signUpReqModel);
+  Future<void> signUp(@Body() SignUpReqModel signUpReqModel);
+  
+    @POST(ApiConstants.signIn)
+  Future<SignInResponseDto> signIn({@Body() required SignInRequestDto request});
 }
