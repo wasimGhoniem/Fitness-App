@@ -14,7 +14,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   );
 
   final AuthApiService _apiServices;
-  final ApiRemoteExecutor _remoteExecutor;
+  final RemoteExecutor _remoteExecutor;
 
   @override
   Future<ApiResult<void>> signUp(SignUpReqModel signUpReqModel) {
