@@ -12,7 +12,7 @@ abstract interface class RemoteExecutor {
   });
 }
 
-@injectable
+@Injectable(as: RemoteExecutor)
 @Named(AppConstants.firebaseRemoteExecutor)
 class FirebaseRemoteExecutor implements RemoteExecutor {
   @override
@@ -39,7 +39,7 @@ class FirebaseRemoteExecutor implements RemoteExecutor {
   }
 }
 
-@injectable
+@Injectable(as: RemoteExecutor)
 @Named(AppConstants.apiRemoteExecutor)
 class ApiRemoteExecutor implements RemoteExecutor {
   @override

@@ -8,6 +8,7 @@ abstract class AppColorsLight {
   static const Color shimmerColor = Color(0xffebebf4);
   static const Color shimmerColorSecondary = Color(0x4Da6a6a6);
   static const Color glassContainerColor = Color(0xff242424);
+  static const Color dividerColor = Color(0xff2D2D2D);
 
   static const MaterialColor black = MaterialColor(0xFF000000, <int, Color>{
     10: Color(0xFFD9D9D9), // lightest gray

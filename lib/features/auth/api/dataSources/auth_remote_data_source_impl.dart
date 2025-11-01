@@ -5,6 +5,7 @@ import 'package:fitness_app/features/auth/api/client/auth_api_service.dart';
 import 'package:fitness_app/features/auth/api/mapper/signIn/sign_in_request_mapper.dart';
 import 'package:fitness_app/features/auth/api/mapper/signIn/sign_in_response_mapper.dart';
 import 'package:fitness_app/features/auth/api/model/signIn/response/sign_in_response_dto.dart';
+import 'package:fitness_app/features/auth/api/model/signUp/request/sign_up_req_model.dart';
 import 'package:fitness_app/features/auth/data/dataSources/auth_remote_data_source.dart';
 import 'package:fitness_app/features/auth/domain/entity/signIn/sign_in_request_entity.dart';
 import 'package:fitness_app/features/auth/domain/entity/signIn/sign_in_response_entity.dart';
@@ -18,7 +19,6 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   );
 
   final AuthApiService _apiServices;
-
   final ApiRemoteExecutor _apiRemoteExecutor;
 
   @override
@@ -28,6 +28,13 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
     return _apiRemoteExecutor.execute<SignInResponseDto, SignInResponseEntity>(
       request: () => _apiServices.signIn(request: request.toDto()),
       mapper: (response) => response.toEntity(),
+    );
+  }
+
+  @override
+  Future<ApiResult<void>> signUp(SignUpReqModel signUpReqModel) {
+    return _apiRemoteExecutor.execute<void, void>(
+      request: () => _apiServices.signUp(signUpReqModel),
     );
   }
 }

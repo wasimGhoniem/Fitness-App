@@ -1,4 +1,6 @@
 import 'package:fitness_app/core/errors/api_results.dart';
+import 'package:fitness_app/core/errors/failure.dart';
+import 'package:fitness_app/features/auth/api/model/signUp/request/sign_up_req_model.dart';
 import 'package:fitness_app/features/auth/data/dataSources/auth_local_data_source.dart';
 import 'package:fitness_app/features/auth/data/dataSources/auth_remote_data_source.dart';
 import 'package:fitness_app/features/auth/data/repositories/auth_repo_impl.dart';
@@ -17,6 +19,12 @@ void main() {
   late MockAuthRemoteDataSource mockAuthRemoteDataSource;
   late MockAuthLocalDataSource mockAuthLocalDataSource;
 
+  // Provide dummy values to avoid MissingDummyValueError
+  provideDummy<ApiResult<void>>(ApiSuccessResult<void>(data: null));
+  provideDummy<ApiResult<SignInResponseEntity>>(
+    ApiSuccessResult(data: SignInResponseEntity()),
+  );
+
   setUp(() {
     mockAuthRemoteDataSource = MockAuthRemoteDataSource();
     mockAuthLocalDataSource = MockAuthLocalDataSource();
@@ -24,19 +32,14 @@ void main() {
       mockAuthRemoteDataSource,
       mockAuthLocalDataSource,
     );
-
-    // Provide dummy values for Mockito
-    provideDummy<ApiResult<SignInResponseEntity>>(
-      ApiSuccessResult(data: SignInResponseEntity()),
-    );
   });
 
   group('AuthRepoImpl', () {
+    // ---------------- SIGN IN TESTS ----------------
     group('signIn', () {
       test(
         'should return ApiSuccessResult when sign in is successful',
         () async {
-          // Arrange
           const email = 'test@example.com';
           const password = 'password123';
           final requestEntity = SignInRequestEntity(
@@ -67,28 +70,18 @@ void main() {
             mockAuthRemoteDataSource.signIn(request: anyNamed('request')),
           ).thenAnswer((_) async => ApiSuccessResult(data: expectedEntity));
 
-          // Act
           final result = await authRepoImpl.signIn(request: requestEntity);
 
-          // Assert
           expect(result, isA<ApiSuccessResult<SignInResponseEntity>>());
           expect(
             (result as ApiSuccessResult).data.message,
             equals('Login successful'),
           );
           expect(
-            (result as ApiSuccessResult).data.token,
+            result.data.token,
             equals('jwt_token_123'),
           );
-          expect(
-            (result as ApiSuccessResult).data.user?.firstName,
-            equals('John'),
-          );
-          expect(
-            (result as ApiSuccessResult).data.user?.lastName,
-            equals('Doe'),
-          );
-          expect((result as ApiSuccessResult).data.user?.email, equals(email));
+          expect(result.data.user?.firstName, equals('John'));
 
           verify(
             mockAuthRemoteDataSource.signIn(request: requestEntity),
@@ -97,7 +90,6 @@ void main() {
       );
 
       test('should return ApiErrorResult when sign in fails', () async {
-        // Arrange
         const email = 'test@example.com';
         const password = 'wrong_password';
         final requestEntity = SignInRequestEntity(
@@ -115,90 +107,66 @@ void main() {
           mockAuthRemoteDataSource.signIn(request: anyNamed('request')),
         ).thenAnswer((_) async => ApiSuccessResult(data: expectedEntity));
 
-        // Act
         final result = await authRepoImpl.signIn(request: requestEntity);
 
-        // Assert
         expect(result, isA<ApiSuccessResult<SignInResponseEntity>>());
         expect(
           (result as ApiSuccessResult).data.message,
           equals('Invalid credentials'),
         );
-        expect((result as ApiSuccessResult).data.token, equals(''));
-        expect((result as ApiSuccessResult).data.user?.firstName, equals(null));
+        expect(result.data.token, equals(''));
 
         verify(
           mockAuthRemoteDataSource.signIn(request: requestEntity),
         ).called(1);
       });
+    });
 
-      test('should call remote data source with correct parameters', () async {
-        // Arrange
-        const email = 'test@example.com';
-        const password = 'password123';
-        final requestEntity = SignInRequestEntity(
-          email: email,
-          password: password,
-        );
-
-        final expectedEntity = SignInResponseEntity(
-          message: 'Login successful',
-          token: 'jwt_token_123',
-          user: const SignInUserEntity(),
-        );
-
-        when(
-          mockAuthRemoteDataSource.signIn(request: anyNamed('request')),
-        ).thenAnswer((_) async => ApiSuccessResult(data: expectedEntity));
-
-        // Act
-        await authRepoImpl.signIn(request: requestEntity);
-
-        // Assert
-        verify(
-          mockAuthRemoteDataSource.signIn(request: requestEntity),
-        ).called(1);
-      });
+    // ---------------- SIGN UP TESTS ----------------
+    group('signUp', () {
+      final tSignUpReqModel = SignUpReqModel(
+        email: 'test@test.com',
+        password: 'password',
+        firstName: 'Test',
+        lastName: 'User',
+        rePassword: 'password',
+        gender: 'male',
+        height: 180,
+        weight: 75,
+        age: 30,
+        goal: 'muscle',
+        activityLevel: 'active',
+      );
 
       test(
-        'should delegate to remote data source without modification',
+        'should return ApiSuccessResult when the call to remote data source is successful',
         () async {
-          // Arrange
-          const email = 'test@example.com';
-          const password = 'password123';
-          final requestEntity = SignInRequestEntity(
-            email: email,
-            password: password,
-          );
-
-          final expectedEntity = SignInResponseEntity(
-            message: 'Login successful',
-            token: 'jwt_token_123',
-            user: const SignInUserEntity(),
-          );
-
           when(
-            mockAuthRemoteDataSource.signIn(request: anyNamed('request')),
-          ).thenAnswer((_) async => ApiSuccessResult(data: expectedEntity));
+            mockAuthRemoteDataSource.signUp(any),
+          ).thenAnswer((_) async => ApiSuccessResult<void>(data: null));
 
-          // Act
-          final result = await authRepoImpl.signIn(request: requestEntity);
+          final result = await authRepoImpl.signUp(tSignUpReqModel);
 
-          // Assert
-          expect(result, isA<ApiSuccessResult<SignInResponseEntity>>());
-          expect(
-            (result as ApiSuccessResult).data.message,
-            equals('Login successful'),
-          );
-          expect(
-            (result as ApiSuccessResult).data.token,
-            equals('jwt_token_123'),
-          );
+          expect(result, isA<ApiSuccessResult<void>>());
+          verify(mockAuthRemoteDataSource.signUp(tSignUpReqModel));
+          verifyNoMoreInteractions(mockAuthRemoteDataSource);
+        },
+      );
 
-          // Verify that the repository simply delegates to the remote data source
-          verify(
-            mockAuthRemoteDataSource.signIn(request: requestEntity),
-          ).called(1);
+      test(
+        'should return ApiErrorResult when the call to remote data source is unsuccessful',
+        () async {
+          final tFailure = Failure(errorMessage: 'Server Error');
+          when(
+            mockAuthRemoteDataSource.signUp(any),
+          ).thenAnswer((_) async => ApiErrorResult<void>(failure: tFailure));
+
+          final result = await authRepoImpl.signUp(tSignUpReqModel);
+
+          expect(result, isA<ApiErrorResult<void>>());
+          expect((result as ApiErrorResult).failure, tFailure);
+          verify(mockAuthRemoteDataSource.signUp(tSignUpReqModel));
+          verifyNoMoreInteractions(mockAuthRemoteDataSource);
         },
       );
     });

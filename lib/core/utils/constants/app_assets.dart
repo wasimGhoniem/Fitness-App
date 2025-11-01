@@ -10,10 +10,6 @@ class Assets {
   /// assets/icons/Apple.svg
   static const String assetsIconsApple = "assets/icons/Apple.svg";
 
-  /// Assets for assetsIconsBackIcon
-  /// assets/icons/back_icon.png
-  static const String assetsIconsBackIcon = "assets/icons/back_icon.png";
-
   /// Assets for assetsIconsChangePassword
   /// assets/icons/change_password.png
   static const String assetsIconsChangePassword = "assets/icons/change_password.png";
@@ -69,6 +65,10 @@ class Assets {
   /// Assets for assetsIconsLogoutIcon
   /// assets/icons/logout_icon.png
   static const String assetsIconsLogoutIcon = "assets/icons/logout_icon.png";
+
+  /// Assets for assetsIconsMail
+  /// assets/icons/mail.svg
+  static const String assetsIconsMail = "assets/icons/mail.svg";
 
   /// Assets for assetsIconsMainIcon
   /// assets/icons/main_icon.png
@@ -146,6 +146,10 @@ class Assets {
   /// assets/icons/unselected_radio.svg
   static const String assetsIconsUnselectedRadio = "assets/icons/unselected_radio.svg";
 
+  /// Assets for assetsIconsVector
+  /// assets/icons/Vector.svg
+  static const String assetsIconsVector = "assets/icons/Vector.svg";
+
   /// Assets for assetsIconsWorkoutIcon
   /// assets/icons/workout_icon.png
   static const String assetsIconsWorkoutIcon = "assets/icons/workout_icon.png";
@@ -205,7 +209,9 @@ class Assets {
   /// Assets for assetsImagesRobotImage
   /// assets/images/robot_image.png
   static const String assetsImagesRobotImage = "assets/images/robot_image.png";
+  
   static const String assetsIconsSelectedChatAi = "assets/icons/selected_chat_ai.svg";
 
+  static const String assetsIconsBackIconSvg='assets/icons/Back.svg';
 }
 
