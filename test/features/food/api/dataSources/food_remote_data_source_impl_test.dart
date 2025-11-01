@@ -1,19 +1,18 @@
-import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/annotations.dart';
-import 'package:mockito/mockito.dart';
-
-import 'package:fitness_app/features/food/api/client/food_api_service.dart';
-import 'package:fitness_app/features/food/api/dataSources/food_remote_data_source_impl.dart';
-import 'package:fitness_app/features/food/api/model/meals_categories_response_dto.dart';
-import 'package:fitness_app/features/food/api/model/meal_category_dto.dart';
-import 'package:fitness_app/features/food/api/model/meals_by_category_response_dto.dart';
-import 'package:fitness_app/features/food/api/model/meals_dto.dart';
-import 'package:fitness_app/features/food/data/dataSources/food_remote_data_source.dart';
 import 'package:fitness_app/core/classes/remote_executor.dart';
 import 'package:fitness_app/core/errors/api_results.dart';
 import 'package:fitness_app/core/errors/failure.dart';
-import 'package:fitness_app/features/food/domain/entity/meals_categories_response_entity.dart';
+import 'package:fitness_app/features/food/api/client/food_api_service.dart';
+import 'package:fitness_app/features/food/api/dataSources/food_remote_data_source_impl.dart';
+import 'package:fitness_app/features/food/api/model/meal_category_dto.dart';
+import 'package:fitness_app/features/food/api/model/meals_by_category_response_dto.dart';
+import 'package:fitness_app/features/food/api/model/meals_categories_response_dto.dart';
+import 'package:fitness_app/features/food/api/model/meals_dto.dart';
+import 'package:fitness_app/features/food/data/dataSources/food_remote_data_source.dart';
 import 'package:fitness_app/features/food/domain/entity/meals_by_category_response_entity.dart';
+import 'package:fitness_app/features/food/domain/entity/meals_categories_response_entity.dart';
+import 'package:flutter_test/flutter_test.dart';
+import 'package:mockito/annotations.dart';
+import 'package:mockito/mockito.dart';
 
 import 'food_remote_data_source_impl_test.mocks.dart';
 
@@ -25,12 +24,12 @@ void main() {
     provideDummy<ApiResult<Object?>>(ApiSuccessResult<Object?>(data: null));
     provideDummy<ApiResult<MealsCategoriesResponseEntity>>(
       ApiSuccessResult<MealsCategoriesResponseEntity>(
-        data: MealsCategoriesResponseEntity(categories: const []),
+        data: const MealsCategoriesResponseEntity(categories: []),
       ),
     );
     provideDummy<ApiResult<MealsByCategoryResponseEntity>>(
       ApiSuccessResult<MealsByCategoryResponseEntity>(
-        data: MealsByCategoryResponseEntity(meals: const []),
+        data: const MealsByCategoryResponseEntity(meals: []),
       ),
     );
   });
