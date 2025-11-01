@@ -1,8 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:fitness_app/core/di/di.dart';
-import 'package:fitness_app/core/services/storage_interface.dart';
 import 'package:fitness_app/core/utils/constants/api_constants.dart';
-import 'package:fitness_app/core/utils/constants/app_constants.dart';
 import 'package:injectable/injectable.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
@@ -24,9 +22,12 @@ abstract class DioModule {
     dio.interceptors.add(
       InterceptorsWrapper(
         onRequest: (options, handler) async {
-          final String token = await getIt
-              .get<Storage>(instanceName: AppConstants.secureStorage)
-              .read(key: ApiConstants.token);
+          final String token =
+              'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiNjdkMWEyYjlkYjY1MjAwNTE0NDA2NzkwIiwiaWF0IjoxNzYxOTI2ODA5fQ.cHuD8UiZxo7k7mNQ5IzAZ4KHGkG5RcK1GZ0ry8RrNkc';
+
+          // await getIt
+          //     .get<Storage>(instanceName: AppConstants.secureStorage)
+          //     .read(key: ApiConstants.token);
           if (token.isNotEmpty) {
             options.headers[ApiConstants.authorization] =
                 '${ApiConstants.bearer} $token';
