@@ -25,25 +25,32 @@ abstract class AppThemeLight {
         thickness: 1,
       ),
 
+
       tabBarTheme: (TabBarThemeData(
+        indicatorSize: TabBarIndicatorSize.tab,
         tabAlignment: TabAlignment.start,
-        labelPadding: const EdgeInsets.only(right: AppSizes.padding_24),
-        labelColor: colorScheme.primary,
-        unselectedLabelColor: AppColorsLight.black[20],
-        indicatorColor: colorScheme.primary,
-        dividerColor: colorScheme.onPrimary,
+        dividerHeight: 0,
+        labelPadding: const EdgeInsets.symmetric(
+          horizontal: AppSizes.padding_24,
+        ),
+        indicator: BoxDecoration(
+          color: colorScheme.primary,
+          borderRadius: BorderRadius.circular(AppSizes.borderRadius_20),
+        ),
         labelStyle: const TextStyle(
-          fontWeight: FontWeight.w400,
+          fontWeight: FontWeight.w700,
           fontSize: AppSizes.font_12,
           fontFamily: AppFonts.baloo,
           color: AppColorsLight.white,
         ),
         unselectedLabelStyle: const TextStyle(
-          fontWeight: FontWeight.w400,
-          fontSize: AppSizes.font_16,
+          fontWeight: FontWeight.w700,
+          fontSize: AppSizes.font_12,
           fontFamily: AppFonts.baloo,
         ),
       )),
+
+
 
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(

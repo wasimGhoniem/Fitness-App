@@ -14,7 +14,8 @@ abstract class DioModule {
   }
 
   @lazySingleton
-  Dio provideDio() {
+  @Named(ApiConstants.fitnessDio)
+  Dio provideFitnessDio() {
     final Dio dio = Dio();
     dio.options.baseUrl = ApiConstants.baseUrl;
     dio.options.headers = {
@@ -35,6 +36,19 @@ abstract class DioModule {
         },
       ),
     );
+
+    return dio;
+  }
+
+  @lazySingleton
+  @Named(ApiConstants.mealsDio)
+  Dio provideMealsDio() {
+    final Dio dio = Dio();
+    dio.options.baseUrl = ApiConstants.mealsBaseUrl;
+    dio.options.headers = {
+      ApiConstants.contentType: ApiConstants.applicationJson,
+    };
+    dio.interceptors.add(getIt.get<PrettyDioLogger>());
 
     return dio;
   }
