@@ -9,7 +9,6 @@ abstract class AppThemeLight {
     return ThemeData(
       useMaterial3: true,
       colorScheme: colorScheme,
-
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(
         type: BottomNavigationBarType.fixed,
         selectedLabelStyle: TextStyle(
@@ -19,9 +18,8 @@ abstract class AppThemeLight {
           color: AppColorsLight.orange,
         ),
       ),
-
-      dividerTheme: DividerThemeData(
-        color: AppColorsLight.black[20]!,
+      dividerTheme: const DividerThemeData(
+        color: AppColorsLight.dividerColor,
         thickness: 1,
       ),
 

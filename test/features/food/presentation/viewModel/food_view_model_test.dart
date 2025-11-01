@@ -1,19 +1,16 @@
-import 'dart:async';
-
+import 'package:fitness_app/core/errors/api_results.dart';
+import 'package:fitness_app/core/errors/failure.dart';
+import 'package:fitness_app/features/food/domain/entity/meals_by_category_response_entity.dart';
+import 'package:fitness_app/features/food/domain/entity/meals_categories_response_entity.dart';
+import 'package:fitness_app/features/food/domain/entity/meals_entity.dart';
+import 'package:fitness_app/features/food/domain/useCases/get_meals_by_category_use_case.dart';
+import 'package:fitness_app/features/food/domain/useCases/get_meals_categories_use_case.dart';
+import 'package:fitness_app/features/food/presentation/viewModel/food_event.dart';
+import 'package:fitness_app/features/food/presentation/viewModel/food_state.dart';
+import 'package:fitness_app/features/food/presentation/viewModel/food_view_model.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-
-import 'package:fitness_app/features/food/presentation/viewModel/food_view_model.dart';
-import 'package:fitness_app/features/food/presentation/viewModel/food_event.dart';
-import 'package:fitness_app/features/food/presentation/viewModel/food_state.dart';
-import 'package:fitness_app/features/food/domain/useCases/get_meals_categories_use_case.dart';
-import 'package:fitness_app/features/food/domain/useCases/get_meals_by_category_use_case.dart';
-import 'package:fitness_app/core/errors/api_results.dart';
-import 'package:fitness_app/core/errors/failure.dart';
-import 'package:fitness_app/features/food/domain/entity/meals_categories_response_entity.dart';
-import 'package:fitness_app/features/food/domain/entity/meals_by_category_response_entity.dart';
-import 'package:fitness_app/features/food/domain/entity/meals_entity.dart';
 
 import 'food_view_model_test.mocks.dart';
 
@@ -23,12 +20,12 @@ void main() {
     // Provide Mockito dummies for ApiResult generics if needed in unstubbed flows
     provideDummy<ApiResult<MealsCategoriesResponseEntity>>(
       ApiSuccessResult<MealsCategoriesResponseEntity>(
-        data: MealsCategoriesResponseEntity(categories: const []),
+        data: const MealsCategoriesResponseEntity(categories: []),
       ),
     );
     provideDummy<ApiResult<MealsByCategoryResponseEntity>>(
       ApiSuccessResult<MealsByCategoryResponseEntity>(
-        data: MealsByCategoryResponseEntity(meals: const []),
+        data: const MealsByCategoryResponseEntity(meals: []),
       ),
     );
   });
@@ -55,8 +52,8 @@ void main() {
       'emits categories on success and sets isCategoriesLoading=false',
       () async {
         // Arrange
-        final categoriesEntity = MealsCategoriesResponseEntity(
-          categories: const [],
+        final categoriesEntity = const MealsCategoriesResponseEntity(
+          categories: [],
         );
         when(
           mockGetMealsCategoriesUseCase.invoke(),
@@ -95,10 +92,8 @@ void main() {
     test('emits loading then meals on success', () async {
       // Arrange
       const category = 'Seafood';
-      final mealsEntity = MealsByCategoryResponseEntity(
-        meals: const [
-          MealsEntity(mealName: 'Fish', mealPhoto: 'img', mealId: '1'),
-        ],
+      final mealsEntity = const MealsByCategoryResponseEntity(
+        meals: [MealsEntity(mealName: 'Fish', mealPhoto: 'img', mealId: '1')],
       );
 
       when(
@@ -165,10 +160,10 @@ void main() {
       () async {
         // Arrange
         const category = 'Seafood';
-        final categoriesEntity = MealsCategoriesResponseEntity(
-          categories: const [],
+        final categoriesEntity = const MealsCategoriesResponseEntity(
+          categories: [],
         );
-        final mealsEntity = MealsByCategoryResponseEntity(meals: const []);
+        final mealsEntity = const MealsByCategoryResponseEntity(meals: []);
 
         when(
           mockGetMealsCategoriesUseCase.invoke(),

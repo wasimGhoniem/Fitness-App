@@ -5,12 +5,15 @@ abstract class ApiConstants {
   static const String applicationJson = 'application/json';
   static const String bearer = 'Bearer';
   static const String authorization = 'Authorization';
-
+  static const String id = 'id';
+  static const String randomMusclesEndPoint = 'muscles/random';
+  static const String musclesEndPoint = 'muscles';
+  static const String musclesGroupEndPoint = 'musclesGroup/{id}';
+  static const String authProfileDataEndPoint = 'auth/profile-data';
   static const String mealsBaseUrl = 'https://www.themealdb.com/api/json/v1/1/';
   static const String mealsCategories = 'categories.php';
   static const String mealsByCategory = 'filter.php';
   static const String mealsByCategoryQuery = 'c';
-
   static const String fitnessDio = 'fitnessDio';
   static const String mealsDio = 'mealsDio';
 }

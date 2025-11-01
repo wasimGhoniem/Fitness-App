@@ -1,13 +1,12 @@
+import 'package:fitness_app/core/errors/api_results.dart';
+import 'package:fitness_app/core/errors/failure.dart';
+import 'package:fitness_app/features/food/data/dataSources/food_remote_data_source.dart';
+import 'package:fitness_app/features/food/data/repositories/food_repo_impl.dart';
+import 'package:fitness_app/features/food/domain/entity/meals_by_category_response_entity.dart';
+import 'package:fitness_app/features/food/domain/entity/meals_categories_response_entity.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-
-import 'package:fitness_app/features/food/data/repositories/food_repo_impl.dart';
-import 'package:fitness_app/features/food/data/dataSources/food_remote_data_source.dart';
-import 'package:fitness_app/core/errors/api_results.dart';
-import 'package:fitness_app/core/errors/failure.dart';
-import 'package:fitness_app/features/food/domain/entity/meals_categories_response_entity.dart';
-import 'package:fitness_app/features/food/domain/entity/meals_by_category_response_entity.dart';
 
 import 'food_repo_impl_test.mocks.dart';
 
@@ -16,12 +15,12 @@ void main() {
   setUpAll(() {
     provideDummy<ApiResult<MealsCategoriesResponseEntity>>(
       ApiSuccessResult<MealsCategoriesResponseEntity>(
-        data: MealsCategoriesResponseEntity(categories: const []),
+        data: const MealsCategoriesResponseEntity(categories: []),
       ),
     );
     provideDummy<ApiResult<MealsByCategoryResponseEntity>>(
       ApiSuccessResult<MealsByCategoryResponseEntity>(
-        data: MealsByCategoryResponseEntity(meals: const []),
+        data: const MealsByCategoryResponseEntity(meals: []),
       ),
     );
   });
@@ -37,7 +36,7 @@ void main() {
   group('FoodRepoImpl.getMealsCategories', () {
     test('returns ApiSuccessResult when remote succeeds', () async {
       // Arrange
-      final entity = MealsCategoriesResponseEntity(categories: const []);
+      final entity = const MealsCategoriesResponseEntity(categories: []);
       when(
         mockRemoteDataSource.getMealsCategories(),
       ).thenAnswer((_) async => ApiSuccessResult(data: entity));
@@ -77,7 +76,7 @@ void main() {
 
     test('returns ApiSuccessResult when remote succeeds', () async {
       // Arrange
-      final entity = MealsByCategoryResponseEntity(meals: const []);
+      final entity = const MealsByCategoryResponseEntity(meals: []);
       when(
         mockRemoteDataSource.getMealsByCategory(mealCategoryName: category),
       ).thenAnswer((_) async => ApiSuccessResult(data: entity));

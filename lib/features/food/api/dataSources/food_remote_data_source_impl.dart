@@ -19,7 +19,7 @@ class FoodRemoteDataSourceImpl implements FoodRemoteDataSource {
   );
 
   final FoodApiService _apiService;
-  final ApiRemoteExecutor _apiRemoteExecutor;
+  final RemoteExecutor _apiRemoteExecutor;
 
   @override
   Future<ApiResult<MealsByCategoryResponseEntity>> getMealsByCategory({
