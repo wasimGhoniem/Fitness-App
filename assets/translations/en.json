@@ -20,5 +20,8 @@
     "see_all": "See All",
     "full_body": "Full Body",
     "popular": "Popular",
-    "news": "New"
+    "news": "New",
+    "food_recommendation": "Food Recommendation",
+    "retry": "Retry",
+    "no_meals": "No meals"
 }

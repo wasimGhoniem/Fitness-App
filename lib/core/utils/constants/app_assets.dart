@@ -205,5 +205,7 @@ class Assets {
   /// Assets for assetsImagesRobotImage
   /// assets/images/robot_image.png
   static const String assetsImagesRobotImage = "assets/images/robot_image.png";
+
+  static const String assetsIconsBackIconSvg='assets/icons/Back.svg';
 }
 
