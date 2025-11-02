@@ -7,8 +7,8 @@ extension SignInResponseDtoMapper on SignInResponseDto {
   SignInResponseEntity toEntity() {
     return SignInResponseEntity(
       message: message ?? '',
-      token: token ?? '',
-      user: user?.toEntity()?? const SignInUserEntity(),
+      token: token,
+      user: user?.toEntity() ?? const SignInUserEntity(),
     );
   }
 }

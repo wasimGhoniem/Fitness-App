@@ -12,7 +12,6 @@ class AuthRepoImpl implements AuthRepo {
   AuthRepoImpl(this._authRemoteDataSource, this._authLocalDataSource);
 
   final AuthRemoteDataSource _authRemoteDataSource;
-  // ignore: unused_field
   final AuthLocalDataSource _authLocalDataSource;
 
   @override
@@ -25,5 +24,10 @@ class AuthRepoImpl implements AuthRepo {
   @override
   Future<ApiResult<void>> signUp(SignUpReqModel signUpReqModel) {
     return _authRemoteDataSource.signUp(signUpReqModel);
+  }
+
+  @override
+  Future<ApiResult<void>> writeToken({required String token}) async {
+    return await _authLocalDataSource.WriteToken(token: token);
   }
 }

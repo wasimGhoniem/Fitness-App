@@ -2,7 +2,7 @@ import 'package:bloc_test/bloc_test.dart';
 import 'package:fitness_app/core/errors/api_results.dart';
 import 'package:fitness_app/core/errors/failure.dart';
 import 'package:fitness_app/features/auth/api/model/signUp/request/sign_up_req_model.dart';
-import 'package:fitness_app/features/auth/domain/use_cases/sign_up_use_case.dart';
+import 'package:fitness_app/features/auth/domain/useCases/sign_up_use_case.dart';
 import 'package:fitness_app/features/auth/presentation/viewModel/signUp/sign_up_events.dart';
 import 'package:fitness_app/features/auth/presentation/viewModel/signUp/sign_up_state.dart';
 import 'package:fitness_app/features/auth/presentation/viewModel/signUp/sign_up_view_model.dart';

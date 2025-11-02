@@ -34,6 +34,7 @@ void main() {
     provideDummy<ApiResult<SignInResponseEntity>>(
       ApiSuccessResult(data: SignInResponseEntity()),
     );
+    provideDummy<ApiResult<void>>(ApiSuccessResult<void>(data: null));
     provideDummy<SignInResponseDto>(SignInResponseDto());
     provideDummy<SignInUserDto>(SignInUserDto());
   });
@@ -41,52 +42,66 @@ void main() {
   group('AuthRemoteDataSourceImpl', () {
     // ------------------ SIGN IN TESTS ------------------
     group('signIn', () {
-      test('should return ApiSuccessResult when sign in is successful', () async {
-        // Arrange
-        const email = 'test@example.com';
-        const password = 'password123';
-        final requestEntity = SignInRequestEntity(email: email, password: password);
-
-        final expectedEntity = SignInResponseEntity(
-          message: 'Login successful',
-          token: 'jwt_token_123',
-          user: const SignInUserEntity(
-            id: '1',
-            firstName: 'John',
-            lastName: 'Doe',
+      test(
+        'should return ApiSuccessResult when sign in is successful',
+        () async {
+          // Arrange
+          const email = 'test@example.com';
+          const password = 'password123';
+          final requestEntity = SignInRequestEntity(
             email: email,
-            gender: 'male',
-            age: 25,
-            weight: 70,
-            height: 175,
-            activityLevel: 'moderate',
-            goal: 'lose_weight',
-            photo: 'photo_url',
-            createdAt: '2023-01-01',
-          ),
-        );
+            password: password,
+          );
 
-        when(mockApiRemoteExecutor.execute<SignInResponseDto, SignInResponseEntity>(
-          request: anyNamed('request'),
-          mapper: anyNamed('mapper'),
-        )).thenAnswer((_) async => ApiSuccessResult(data: expectedEntity));
+          final expectedEntity = SignInResponseEntity(
+            message: 'Login successful',
+            token: 'jwt_token_123',
+            user: const SignInUserEntity(
+              id: '1',
+              firstName: 'John',
+              lastName: 'Doe',
+              email: email,
+              gender: 'male',
+              age: 25,
+              weight: 70,
+              height: 175,
+              activityLevel: 'moderate',
+              goal: 'lose_weight',
+              photo: 'photo_url',
+              createdAt: '2023-01-01',
+            ),
+          );
 
-        // Act
-        final result = await authRemoteDataSourceImpl.signIn(request: requestEntity);
+          when(
+            mockApiRemoteExecutor
+                .execute<SignInResponseDto, SignInResponseEntity>(
+                  request: anyNamed('request'),
+                  mapper: anyNamed('mapper'),
+                ),
+          ).thenAnswer((_) async => ApiSuccessResult(data: expectedEntity));
 
-        // Assert
-        expect(result, isA<ApiSuccessResult<SignInResponseEntity>>());
-        final data = (result as ApiSuccessResult).data;
-        expect(data.message, equals('Login successful'));
-        expect(data.token, equals('jwt_token_123'));
-        expect(data.user?.firstName, equals('John'));
-      });
+          // Act
+          final result = await authRemoteDataSourceImpl.signIn(
+            request: requestEntity,
+          );
+
+          // Assert
+          expect(result, isA<ApiSuccessResult<SignInResponseEntity>>());
+          final data = (result as ApiSuccessResult).data;
+          expect(data.message, equals('Login successful'));
+          expect(data.token, equals('jwt_token_123'));
+          expect(data.user?.firstName, equals('John'));
+        },
+      );
 
       test('should call apiRemoteExecutor with correct parameters', () async {
         // Arrange
         const email = 'test@example.com';
         const password = 'password123';
-        final requestEntity = SignInRequestEntity(email: email, password: password);
+        final requestEntity = SignInRequestEntity(
+          email: email,
+          password: password,
+        );
 
         final expectedEntity = SignInResponseEntity(
           message: 'Login successful',
@@ -94,19 +109,25 @@ void main() {
           user: const SignInUserEntity(),
         );
 
-        when(mockApiRemoteExecutor.execute<SignInResponseDto, SignInResponseEntity>(
-          request: anyNamed('request'),
-          mapper: anyNamed('mapper'),
-        )).thenAnswer((_) async => ApiSuccessResult(data: expectedEntity));
+        when(
+          mockApiRemoteExecutor
+              .execute<SignInResponseDto, SignInResponseEntity>(
+                request: anyNamed('request'),
+                mapper: anyNamed('mapper'),
+              ),
+        ).thenAnswer((_) async => ApiSuccessResult(data: expectedEntity));
 
         // Act
         await authRemoteDataSourceImpl.signIn(request: requestEntity);
 
         // Assert
-        verify(mockApiRemoteExecutor.execute<SignInResponseDto, SignInResponseEntity>(
-          request: anyNamed('request'),
-          mapper: anyNamed('mapper'),
-        )).called(1);
+        verify(
+          mockApiRemoteExecutor
+              .execute<SignInResponseDto, SignInResponseEntity>(
+                request: anyNamed('request'),
+                mapper: anyNamed('mapper'),
+              ),
+        ).called(1);
       });
     });
 
@@ -128,7 +149,15 @@ void main() {
 
       test('should return success when sign up succeeds', () async {
         // Arrange
-        when(mockAuthApiService.signUp(any)).thenAnswer((_) async => Future.value());
+        when(
+          mockAuthApiService.signUp(any),
+        ).thenAnswer((_) async => Future.value());
+        when(
+          mockApiRemoteExecutor.execute<void, void>(
+            request: anyNamed('request'),
+            mapper: anyNamed('mapper'),
+          ),
+        ).thenAnswer((_) async => ApiSuccessResult<void>(data: null));
 
         // Act
         final result = await authRemoteDataSourceImpl.signUp(tSignUpReqModel);
@@ -149,6 +178,24 @@ void main() {
         );
 
         when(mockAuthApiService.signUp(any)).thenThrow(dioException);
+        when(
+          mockApiRemoteExecutor.execute<void, void>(
+            request: anyNamed('request'),
+            mapper: anyNamed('mapper'),
+          ),
+        ).thenAnswer((invocation) async {
+          try {
+            // Execute the actual request function passed to execute
+            final requestFunction =
+                invocation.namedArguments[#request] as Future<void> Function();
+            await requestFunction();
+            return ApiSuccessResult<void>(data: null);
+          } on DioException catch (e) {
+            return ApiErrorResult<void>(
+              failure: ServerFailure.fromDioError(dioException: e),
+            );
+          }
+        });
 
         // Act
         final result = await authRemoteDataSourceImpl.signUp(tSignUpReqModel);

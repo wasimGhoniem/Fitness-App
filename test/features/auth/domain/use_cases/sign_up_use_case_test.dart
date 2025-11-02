@@ -2,11 +2,10 @@ import 'package:fitness_app/core/errors/api_results.dart';
 import 'package:fitness_app/core/errors/failure.dart';
 import 'package:fitness_app/features/auth/api/model/signUp/request/sign_up_req_model.dart';
 import 'package:fitness_app/features/auth/domain/repositories/auth_repo.dart';
-import 'package:fitness_app/features/auth/domain/use_cases/sign_up_use_case.dart';
+import 'package:fitness_app/features/auth/domain/useCases/sign_up_use_case.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-
 import 'sign_up_use_case_test.mocks.dart';
 
 @GenerateMocks([AuthRepo])

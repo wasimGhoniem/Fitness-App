@@ -4,6 +4,7 @@ import 'package:fitness_app/features/auth/domain/entity/signIn/sign_in_request_e
 import 'package:fitness_app/features/auth/domain/entity/signIn/sign_in_response_entity.dart';
 import 'package:fitness_app/features/auth/domain/entity/signIn/sign_in_user_entity.dart';
 import 'package:fitness_app/features/auth/domain/useCases/sign_in_use_case.dart';
+import 'package:fitness_app/features/auth/domain/useCases/write_token_use_case.dart';
 import 'package:fitness_app/features/auth/presentation/viewModel/signIn/sign_in_event.dart';
 import 'package:fitness_app/features/auth/presentation/viewModel/signIn/sign_in_view_model.dart';
 import 'package:flutter/material.dart';
@@ -13,20 +14,23 @@ import 'package:mockito/mockito.dart';
 
 import 'sign_in_view_model_test.mocks.dart';
 
-@GenerateMocks([SignInUseCase])
+@GenerateMocks([SignInUseCase, WriteTokenUseCase])
 void main() {
   late SignInViewModel signInViewModel;
   late MockSignInUseCase mockSignInUseCase;
+  late MockWriteTokenUseCase mockWriteTokenUseCase;
 
   setUp(() {
     TestWidgetsFlutterBinding.ensureInitialized();
     mockSignInUseCase = MockSignInUseCase();
-    signInViewModel = SignInViewModel(mockSignInUseCase);
+    mockWriteTokenUseCase = MockWriteTokenUseCase();
+    signInViewModel = SignInViewModel(mockSignInUseCase, mockWriteTokenUseCase);
 
     // Provide dummy values for Mockito
     provideDummy<ApiResult<SignInResponseEntity>>(
       ApiSuccessResult(data: SignInResponseEntity()),
     );
+    provideDummy<ApiResult<void>>(ApiSuccessResult<void>(data: null));
   });
 
   group('SignInViewModel', () {
@@ -74,7 +78,7 @@ void main() {
 
       test(
         'should preserve existing state values when using copyWith with nulls',
-            () {
+        () {
           // Arrange
           final originalState = signInViewModel.state.copyWith(
             isLoading: true,
