@@ -23,7 +23,6 @@ abstract class AppThemeLight {
         thickness: 1,
       ),
 
-
       tabBarTheme: (TabBarThemeData(
         indicatorSize: TabBarIndicatorSize.tab,
         tabAlignment: TabAlignment.start,
@@ -47,8 +46,6 @@ abstract class AppThemeLight {
           fontFamily: AppFonts.baloo,
         ),
       )),
-
-
 
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(

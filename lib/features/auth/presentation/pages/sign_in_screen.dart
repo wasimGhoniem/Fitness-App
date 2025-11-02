@@ -114,7 +114,7 @@ class _SignInScreenState extends State<SignInScreen> {
                           SignInActionEvent(
                             request: SignInRequestEntity(
                               email: _viewModel.emailController.text,
-                              password: _viewModel.PasswordController.text,
+                              password: _viewModel.passwordController.text,
                             ),
                           ),
                         );

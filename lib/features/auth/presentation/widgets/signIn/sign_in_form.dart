@@ -44,7 +44,7 @@ class SignInForm extends StatelessWidget {
           const SizedBox(height: AppSizes.spaceBetweenItems_16),
           CustomPasswordTextFormField(
             prefixIconPath: Assets.assetsIconsPasswordIcon,
-            controller: viewModel.PasswordController,
+            controller: viewModel.passwordController,
             hint: LocaleKeys.password.tr(),
             validator: Validations.validatePassword,
           ),

@@ -27,7 +27,7 @@ class BuildHeaderSection extends StatelessWidget {
         Align(
           child: Image.asset(imagePath, height: iconHeight, width: iconWidth),
         ),
-        const SizedBox(height: AppSizes.spaceBetweenItems_85),
+        const SizedBox(height: AppSizes.spaceBetweenItems_48),
         CustomText(
           text: firstText,
           style: Theme.of(context).textTheme.bodyMedium!,

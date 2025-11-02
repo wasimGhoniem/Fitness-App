@@ -16,21 +16,21 @@ class SignInViewModel extends Cubit<SignInState> {
   final SignInUseCase _signInUseCase;
   final WriteTokenUseCase _writeTokenUseCase;
   final TextEditingController emailController = TextEditingController();
-  final TextEditingController PasswordController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
   final signInKey = GlobalKey<FormState>();
 
   @override
   Future<void> close() {
     emailController.dispose();
-    PasswordController.dispose();
-    emailController.dispose();
+    passwordController.dispose();
+
     return super.close();
   }
 
   Future<void> doIntent(SignInEvent event) async {
     switch (event) {
       case SignInActionEvent():
-        await _signInFlow(request: event.request);
+        await _signIn(request: event.request);
     }
   }
 
@@ -44,6 +44,7 @@ class SignInViewModel extends Cubit<SignInState> {
     switch (result) {
       case ApiSuccessResult<SignInResponseEntity>():
         emit(state.copyWith(isLoading: false, response: result.data));
+        await writeToken(token: state.response!.token!);
         break;
       case ApiErrorResult<SignInResponseEntity>():
         emit(state.copyWith(isLoading: false, failure: result.failure));
@@ -59,10 +60,5 @@ class SignInViewModel extends Cubit<SignInState> {
       case ApiErrorResult<void>():
         emit(state.copyWith(storageFailure: result.failure));
     }
-  }
-
-  Future<void> _signInFlow({required SignInRequestEntity request}) async {
-    await _signIn(request: request);
-    await writeToken(token: state.response!.token!);
   }
 }

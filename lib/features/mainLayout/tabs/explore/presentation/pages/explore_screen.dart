@@ -6,6 +6,6 @@ class ExploreScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(body: ExploreScreenBody());
+    return const ExploreScreenBody();
   }
 }

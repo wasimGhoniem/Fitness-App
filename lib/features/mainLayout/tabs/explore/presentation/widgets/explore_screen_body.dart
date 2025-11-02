@@ -26,9 +26,8 @@ class ExploreScreenBody extends StatefulWidget {
   State<ExploreScreenBody> createState() => _ExploreScreenBodyState();
 }
 
-late final ExploreViewModel _exploreViewModel;
-
 class _ExploreScreenBodyState extends State<ExploreScreenBody> {
+  late final ExploreViewModel _exploreViewModel;
   @override
   void initState() {
     _exploreViewModel = getIt<ExploreViewModel>();
@@ -36,6 +35,12 @@ class _ExploreScreenBodyState extends State<ExploreScreenBody> {
       GetAllExploreEvent(id: AppConstants.abdominalsId),
     );
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    _exploreViewModel.close();
+    super.dispose();
   }
 
   @override
@@ -82,7 +87,7 @@ class _ExploreScreenBodyState extends State<ExploreScreenBody> {
               );
             },
           ),
-          // const ForYouListView(),
+          const SizedBox(height: 150),
         ],
       ),
     );

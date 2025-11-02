@@ -6,6 +6,6 @@ class WorkOutsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(body: WorkOutScreenBody());
+    return const WorkOutScreenBody();
   }
 }
