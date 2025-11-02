@@ -46,5 +46,7 @@
     "news": "New",
     "food_recommendation": "Food Recommendation",
     "retry": "Retry",
-    "no_meals": "No meals"
+    "no_meals": "No meals",
+    "no_workouts": "No Workouts Found"
+    
 }
