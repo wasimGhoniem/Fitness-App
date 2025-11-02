@@ -15,7 +15,7 @@ class CustomAppBarr extends StatelessWidget {
           padding: const EdgeInsets.only(left: AppSizes.padding_16),
           child: GestureDetector(
             onTap: () => context.pop(),
-            child: SvgPicture.asset(Assets.assetsIconsBack),
+            child: SvgPicture.asset(Assets.assetsIconsBackSvg),
           ),
         ),
         const Spacer(),

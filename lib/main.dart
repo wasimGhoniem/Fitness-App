@@ -48,6 +48,7 @@ class FitnessApp extends StatelessWidget {
             breakpoints: AppSizes.appBreakPoints,
             breakpointsLandscape: AppSizes.appLandscapeBreakPoints,
             child: MaterialApp(
+              initialRoute: initialRoute,
               debugShowCheckedModeBanner: false,
               localizationsDelegates: context.localizationDelegates,
               supportedLocales: context.supportedLocales,

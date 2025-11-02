@@ -128,14 +128,14 @@ void main() {
 
       test('should return success when sign up succeeds', () async {
         // Arrange
-        when(mockAuthApiService.SignUp(any)).thenAnswer((_) async => Future.value());
+        when(mockAuthApiService.signUp(any)).thenAnswer((_) async => Future.value());
 
         // Act
         final result = await authRemoteDataSourceImpl.signUp(tSignUpReqModel);
 
         // Assert
         expect(result, isA<ApiSuccessResult<void>>());
-        verify(mockAuthApiService.SignUp(tSignUpReqModel)).called(1);
+        verify(mockAuthApiService.signUp(tSignUpReqModel)).called(1);
       });
 
       test('should return error result when DioException is thrown', () async {
@@ -148,7 +148,7 @@ void main() {
           ),
         );
 
-        when(mockAuthApiService.SignUp(any)).thenThrow(dioException);
+        when(mockAuthApiService.signUp(any)).thenThrow(dioException);
 
         // Act
         final result = await authRemoteDataSourceImpl.signUp(tSignUpReqModel);

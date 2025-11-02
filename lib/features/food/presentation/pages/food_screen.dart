@@ -58,7 +58,7 @@ class _FoodScreenState extends State<FoodScreen> {
                       children: [
                         InkWell(
                           child: SvgPicture.asset(
-                            Assets.assetsIconsBackIconSvg,
+                            Assets.assetsIconsBackSvg,
                           ),
                           onTap: () {
                             context.pop();

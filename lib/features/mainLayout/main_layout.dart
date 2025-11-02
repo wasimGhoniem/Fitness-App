@@ -1,3 +1,4 @@
+import 'package:fitness_app/features/mainLayout/tabs/explore/presentation/pages/explore_screen.dart';
 import 'package:fitness_app/features/mainLayout/widgets/app_bottom_nav_bar.dart';
 import 'package:flutter/material.dart';
 
@@ -12,7 +13,7 @@ class _MainLayoutState extends State<MainLayout> {
   int _currentIndex = 0;
 
   final List<Widget> _pages = const [
-   Text('ExplorePage()') ,
+  ExploreScreen(),
    Text('ChatPage()') ,
    Text('GymPage()') ,
    Text('ProfilePage()') ,

@@ -73,15 +73,11 @@ void main() {
           final result = await authRepoImpl.signIn(request: requestEntity);
 
           expect(result, isA<ApiSuccessResult<SignInResponseEntity>>());
-          expect(
-            (result as ApiSuccessResult).data.message,
-            equals('Login successful'),
-          );
-          expect(
-            result.data.token,
-            equals('jwt_token_123'),
-          );
-          expect(result.data.user?.firstName, equals('John'));
+          final successResult =
+              result as ApiSuccessResult<SignInResponseEntity>;
+          expect(successResult.data.message, equals('Login successful'));
+          expect(successResult.data.token, equals('jwt_token_123'));
+          expect(successResult.data.user?.firstName, equals('John'));
 
           verify(
             mockAuthRemoteDataSource.signIn(request: requestEntity),
@@ -110,11 +106,9 @@ void main() {
         final result = await authRepoImpl.signIn(request: requestEntity);
 
         expect(result, isA<ApiSuccessResult<SignInResponseEntity>>());
-        expect(
-          (result as ApiSuccessResult).data.message,
-          equals('Invalid credentials'),
-        );
-        expect(result.data.token, equals(''));
+        final successResult = result as ApiSuccessResult<SignInResponseEntity>;
+        expect(successResult.data.message, equals('Invalid credentials'));
+        expect(successResult.data.token, equals(''));
 
         verify(
           mockAuthRemoteDataSource.signIn(request: requestEntity),

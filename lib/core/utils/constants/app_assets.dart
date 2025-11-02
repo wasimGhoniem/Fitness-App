@@ -212,6 +212,6 @@ class Assets {
   
   static const String assetsIconsSelectedChatAi = "assets/icons/selected_chat_ai.svg";
 
-  static const String assetsIconsBackIconSvg='assets/icons/Back.svg';
+  static const String assetsIconsBackSvg='assets/icons/Back.svg';
 }
 

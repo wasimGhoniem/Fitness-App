@@ -1,5 +1,6 @@
 import 'package:fitness_app/core/config/routing/app_routes.dart';
 import 'package:fitness_app/features/auth/presentation/pages/sign_in_screen.dart';
+import 'package:fitness_app/features/auth/presentation/pages/sign_up_screen.dart';
 import 'package:fitness_app/features/mainLayout/main_layout.dart';
 import 'package:fitness_app/core/models/selected_food_category_model.dart';
 import 'package:fitness_app/features/food/presentation/pages/food_screen.dart';
@@ -10,6 +11,8 @@ class RouteGenerator {
     switch (settings.name) {
       case AppRoutes.signInRoute:
         return MaterialPageRoute(builder: (_) => const SignInScreen());
+      case AppRoutes.signUpRoute:
+        return MaterialPageRoute(builder: (_) => const SignUpScreen());
       case AppRoutes.mainLayoutRoute:
         return MaterialPageRoute(builder: (_) => const MainLayout());
       case AppRoutes.foodRoute:
