@@ -46,7 +46,7 @@ void main() {
         // Assert
         expect(signInViewModel.emailController, isA<TextEditingController>());
         expect(
-          signInViewModel.PasswordController,
+          signInViewModel.passwordController,
           isA<TextEditingController>(),
         );
         expect(signInViewModel.signInKey, isA<GlobalKey<FormState>>());
@@ -105,11 +105,11 @@ void main() {
 
         // Act
         signInViewModel.emailController.text = email;
-        signInViewModel.PasswordController.text = password;
+        signInViewModel.passwordController.text = password;
 
         // Assert
         expect(signInViewModel.emailController.text, equals(email));
-        expect(signInViewModel.PasswordController.text, equals(password));
+        expect(signInViewModel.passwordController.text, equals(password));
       });
     });
 
