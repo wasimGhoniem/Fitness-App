@@ -18,4 +18,6 @@ abstract class ApiConstants {
   static const String mealsByCategoryQuery = 'c';
   static const String fitnessDio = 'fitnessDio';
   static const String mealsDio = 'mealsDio';
+  static const String mealsDetails = 'lookup.php';
+  static const String mealsIdQuery = 'i';
 }

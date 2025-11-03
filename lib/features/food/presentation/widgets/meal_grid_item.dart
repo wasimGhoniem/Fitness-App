@@ -1,3 +1,5 @@
+import 'package:fitness_app/core/config/routing/app_routes.dart';
+import 'package:fitness_app/core/helpers/routing_extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:fitness_app/core/utils/constants/sizes.dart';
 import 'package:fitness_app/core/config/theme/app_colors.dart';
@@ -9,66 +11,72 @@ class MealGridItem extends StatelessWidget {
     super.key,
     required this.mealPhoto,
     required this.mealName,
+    required this.mealId,
   });
 
   final String mealPhoto;
   final String mealName;
+  final String mealId;
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        ClipRRect(
-          borderRadius: BorderRadius.circular(AppSizes.borderRadius_20),
-          child: CachedNetworkImage(
-            imageUrl: mealPhoto,
-            fit: BoxFit.cover,
-            width: double.infinity,
-            height: double.infinity,
-            imageBuilder: (context, imageProvider) => Container(
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: imageProvider,
-                  fit: BoxFit.cover,
-                  colorFilter: ColorFilter.mode(
-                    Colors.black.withValues(alpha: 0.3),
-                    BlendMode.darken,
+    return InkWell(
+      onTap: () =>
+          context.pushNamed(AppRoutes.foodDetailsRoute, arguments: mealId),
+      child: Stack(
+        children: [
+          ClipRRect(
+            borderRadius: BorderRadius.circular(AppSizes.borderRadius_20),
+            child: CachedNetworkImage(
+              imageUrl: mealPhoto,
+              fit: BoxFit.cover,
+              width: double.infinity,
+              height: double.infinity,
+              imageBuilder: (context, imageProvider) => Container(
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: imageProvider,
+                    fit: BoxFit.cover,
+                    colorFilter: ColorFilter.mode(
+                      Colors.black.withValues(alpha: 0.3),
+                      BlendMode.darken,
+                    ),
                   ),
                 ),
               ),
-            ),
-            placeholder: (context, url) => Shimmer.fromColors(
-              baseColor: Colors.grey[300]!,
-              highlightColor: Colors.grey[100]!,
-              child: Container(color: Colors.grey[300]),
-            ),
-            errorWidget: (context, url, error) => Container(
-              color: Colors.grey.withValues(alpha: 0.1),
-              child: const Icon(Icons.broken_image, color: Colors.grey),
-            ),
-          ),
-        ),
-        Positioned(
-          bottom: 8,
-          left: 0,
-          right: 0,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: AppSizes.padding_16,
-            ),
-            child: Text(
-              mealName,
-              textAlign: TextAlign.center,
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
-              style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                fontWeight: FontWeight.w700,
-                color: AppColorsLight.white,
+              placeholder: (context, url) => Shimmer.fromColors(
+                baseColor: Colors.grey[300]!,
+                highlightColor: Colors.grey[100]!,
+                child: Container(color: Colors.grey[300]),
+              ),
+              errorWidget: (context, url, error) => Container(
+                color: Colors.grey.withValues(alpha: 0.1),
+                child: const Icon(Icons.broken_image, color: Colors.grey),
               ),
             ),
           ),
-        ),
-      ],
+          Positioned(
+            bottom: 8,
+            left: 0,
+            right: 0,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: AppSizes.padding_16,
+              ),
+              child: Text(
+                mealName,
+                textAlign: TextAlign.center,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+                style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                  fontWeight: FontWeight.w700,
+                  color: AppColorsLight.white,
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

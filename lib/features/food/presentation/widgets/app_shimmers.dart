@@ -68,19 +68,23 @@ class AppShimmers {
   }
 
   static Widget get mealsGridShimmer {
-    return Shimmer.fromColors(
-      baseColor: _baseColor,
-      highlightColor: _highlightColor,
-      child: GridView.builder(
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
-          crossAxisSpacing: _spacing,
-          mainAxisSpacing: _spacing,
+    return Container(
+      color: _baseColor,
+      child: Shimmer.fromColors(
+        baseColor: _baseColor,
+        highlightColor: _highlightColor,
+        child: GridView.builder(
+          padding: const EdgeInsets.all(_spacing),
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2,
+            crossAxisSpacing: _spacing,
+            mainAxisSpacing: _spacing,
+          ),
+          itemCount: 6,
+          itemBuilder: (context, index) {
+            return _buildMealItemBone();
+          },
         ),
-        itemCount: 6,
-        itemBuilder: (context, index) {
-          return _buildMealItemBone();
-        },
       ),
     );
   }
