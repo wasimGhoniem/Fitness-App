@@ -9,6 +9,7 @@ abstract class AppSizes {
   static const double padding_16 = 16.0;
   static const double padding_20 = 20.0;
   static const double padding_24 = 24.0;
+  static const double padding_30 = 30.0;
   static const double padding_32 = 32.0;
   static const double padding_36 = 36.0;
   static const double padding_64 = 64.0;
@@ -62,6 +63,7 @@ abstract class AppSizes {
   static const double spaceBetweenItems_16 = 16.0;
   static const double spaceBetweenItems_20 = 20.0;
   static const double spaceBetweenItems_24 = 24.0;
+  static const double spaceBetweenItems_28 = 28.0;
   static const double spaceBetweenItems_32 = 32.0;
   static const double spaceBetweenItems_36 = 36.0;
   static const double spaceBetweenItems_40 = 40.0;
@@ -102,6 +104,13 @@ abstract class AppSizes {
   static const double dividerHeight_8 = 8.0;
   static const double dividerHeight_9 = 9.0;
   static const double dividerHeight_10 = 10.0;
+
+  // pinCode sizes
+  static const int pinCodeLength_6 = 6;
+  static const double pinCodeWidth_68 = 68;
+  static const double pinCodeHeight_74 = 74;
+  static const double pinCodeBorderWidth_3 = 3;
+  static const double pinCodeCursorHeight_40 = 40;
 
   //app bar height
   static const double appBarHeight_29 = 29.0;

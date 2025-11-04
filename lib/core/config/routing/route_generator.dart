@@ -1,8 +1,13 @@
+import 'package:fitness_app/core/config/routing/app_routes.dart';
+import 'package:fitness_app/features/auth/presentation/pages/forget_password_screen.dart';
 import 'package:flutter/material.dart';
 
 class RouteGenerator {
   static Route<dynamic> getRoute(RouteSettings settings) {
     switch (settings.name) {
+      case AppRoutes.forgetPasswordRoute:
+        return MaterialPageRoute(builder: (_) => const ForgetPasswordScreen());
+
       default:
         return unDefinedRoute();
     }

@@ -1,5 +1,7 @@
 import 'package:fitness_app/core/config/theme/app_colors.dart';
+import 'package:fitness_app/core/utils/constants/app_assets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class CustomPasswordTextFormField extends StatefulWidget {
   const CustomPasswordTextFormField({
@@ -38,6 +40,12 @@ class _CustomPasswordTextFormFieldState
       controller: widget.controller,
       decoration: InputDecoration(
         hintText: widget.hint,
+        prefixIcon: Padding(
+          padding: const EdgeInsets.only(left: 8.0),
+          child: SvgPicture.asset(
+            Assets.assetsIconsLockIcon,
+          ),
+        ),
         suffixIcon: IconButton(
           icon: Icon(
             _obscureText

@@ -154,6 +154,14 @@ class Assets {
   /// assets/icons/yoga_person_icon.png
   static const String assetsIconsYogaPersonIcon = "assets/icons/yoga_person_icon.png";
 
+  /// Assets for lockIcon
+  /// assets/icons/lock.svg
+  static const String assetsIconsLockIcon = "assets/icons/lock.svg";
+
+  /// Assets for mailIcon
+  /// assets/icons/mail.svg
+  static const String assetsIconsMailIcon = "assets/icons/mail.svg";
+
   /// Assets for assetsImagesAuthBg
   /// assets/images/auth_bg.png
   static const String assetsImagesAuthBg = "assets/images/auth_bg.png";

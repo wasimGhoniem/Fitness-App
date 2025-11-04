@@ -11,5 +11,22 @@
     "create_an_account": "إنشاء حساب جديد",
     "first_name": "الاسم الأول",
     "last_name": "اسم العائلة",
-    "already_have_an_account": "هل لديك حساب بالفعل؟"
+    "already_have_an_account": "هل لديك حساب بالفعل؟",
+    "ok": "تم",
+    "error": "خطاء",
+    "success": "نجح",
+    "unexpected_Error": "حدث خطأ غير متوقع",
+    "password_Reset_Successfully": "تم إعادة تعيين كلمة المرور بنجاح! يمكنك الآن تسجيل الدخول بكلمة المرور الجديدة.",
+    "code_Verified_Successfully": "تم التحقق من الرمز بنجاح! يرجى إنشاء كلمة المرور الجديدة.",
+    "operation_Completed": "تمت العملية بنجاح!",
+    "send_OTP": "إرسال OTP",
+    "enter_Email": "أدخل بريدك الإلكتروني",
+    "otp_code": "رمز OTP",
+    "enter_your_otp": "أدخل رمز OTP المرسل إلى بريدك الإلكتروني.",
+    "confirm": "تأكيد",
+    "did_Not_Receive_Code": "لم تستلم الرمز؟",
+    "resend_code": "أعد أرسال الرمز",
+    "make_sure_its_8": "تأكد من أن تكون كلمة المرور مكونة من 8 أحرف أو أكثر.",
+    "create_new_password": "إنشاء كلمة مرور جديدة",
+    "done": "منتهي"
 }
