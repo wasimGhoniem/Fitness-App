@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:fitness_app/core/utils/constants/sizes.dart';
 import 'package:fitness_app/core/config/theme/app_colors.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:shimmer/shimmer.dart';
 
 class MealGridItem extends StatelessWidget {
   const MealGridItem({
@@ -44,11 +43,12 @@ class MealGridItem extends StatelessWidget {
                   ),
                 ),
               ),
-              placeholder: (context, url) => Shimmer.fromColors(
-                baseColor: Colors.grey[300]!,
-                highlightColor: Colors.grey[100]!,
-                child: Container(color: Colors.grey[300]),
+              placeholder: (context, url) => Center(
+                child: CircularProgressIndicator(
+                  color: Theme.of(context).colorScheme.primary,
+                ),
               ),
+
               errorWidget: (context, url, error) => Container(
                 color: Colors.grey.withValues(alpha: 0.1),
                 child: const Icon(Icons.broken_image, color: Colors.grey),

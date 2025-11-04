@@ -3,6 +3,7 @@ import 'package:fitness_app/core/helpers/routing_extensions.dart';
 import 'package:fitness_app/core/utils/constants/app_assets.dart';
 import 'package:fitness_app/core/utils/constants/sizes.dart';
 import 'package:fitness_app/core/widgets/glass_layout.dart';
+import 'package:fitness_app/features/food/presentation/widgets/app_shimmers.dart';
 import 'package:fitness_app/features/food_details/domain/entities/meal_entity.dart';
 import 'package:fitness_app/features/food_details/presentation/viewModel/food_details_event.dart';
 import 'package:fitness_app/features/food_details/presentation/viewModel/food_details_state.dart';
@@ -48,7 +49,7 @@ class _FoodDetailsScreenState extends State<FoodDetailsScreen> {
           child: BlocBuilder<FoodDetailsViewModel, FoodDetailsState>(
             builder: (BuildContext context, FoodDetailsState state) {
               if (state.isLoading) {
-                return const Center(child: CircularProgressIndicator());
+                return AppShimmers.foodDetailsShimmer();
               }
 
               if (state.failure != null) {
@@ -69,6 +70,7 @@ class _FoodDetailsScreenState extends State<FoodDetailsScreen> {
                 backGroundImage: Assets.assetsImagesHomeBg,
                 body: [
                   FoodDetailsHeaderSection(
+                    videoUrl: mealDetails.youtubeUrl!,
                     imageUrl: mealDetails.imageUrl!,
                     title: mealDetails.name,
                     subtitle: mealDetails.instructions!,
