@@ -4,7 +4,8 @@ import 'package:fitness_app/features/workouts/presentation/pages/work_outs_scree
 import 'package:flutter/material.dart';
 
 class MainLayout extends StatefulWidget {
-  const MainLayout({super.key});
+  const MainLayout({super.key, required this.initialIndex});
+  final int initialIndex;
 
   @override
   State<MainLayout> createState() => _MainLayoutState();
@@ -12,6 +13,11 @@ class MainLayout extends StatefulWidget {
 
 class _MainLayoutState extends State<MainLayout> {
   int _currentIndex = 0;
+  @override
+  void initState() {
+    _currentIndex = widget.initialIndex;
+    super.initState();
+  }
 
   final List<Widget> _pages = const [
     ExploreScreen(),

@@ -1,3 +1,6 @@
+import 'package:fitness_app/core/config/routing/app_routes.dart';
+import 'package:fitness_app/core/helpers/routing_extensions.dart';
+import 'package:fitness_app/core/models/selected_food_category_model.dart';
 import 'package:fitness_app/core/utils/constants/sizes.dart';
 import 'package:fitness_app/features/food/domain/entity/meal_category_entity.dart';
 import 'package:fitness_app/features/mainLayout/tabs/explore/presentation/widgets/recommended_list_view_item.dart';
@@ -21,9 +24,18 @@ class ReccomendedForYouListView extends StatelessWidget {
         separatorBuilder: (context, index) =>
             const SizedBox(width: AppSizes.spaceBetweenItems_16),
         scrollDirection: Axis.horizontal,
-        itemBuilder: (context, index) => RecommendedListViewItem(
-          categories: musclesList[index],
-          isLoading: isLoading,
+        itemBuilder: (context, index) => GestureDetector(
+          onTap: () {
+            final arg = SelectedFoodCategoryModel(
+              mealCategoryName: musclesList[index].categoryName!,
+              selectedIndex: index,
+            );
+            context.pushNamed(AppRoutes.foodRoute, arguments: arg);
+          },
+          child: RecommendedListViewItem(
+            categories: musclesList[index],
+            isLoading: isLoading,
+          ),
         ),
       ),
     );

@@ -1,3 +1,6 @@
+import 'package:fitness_app/core/config/routing/app_routes.dart';
+import 'package:fitness_app/core/helpers/routing_extensions.dart';
+import 'package:fitness_app/core/models/exercise_model.dart';
 import 'package:fitness_app/core/utils/constants/sizes.dart';
 import 'package:fitness_app/features/mainLayout/tabs/explore/domain/entities/muscle_entity.dart';
 import 'package:fitness_app/features/mainLayout/tabs/explore/presentation/widgets/muscles_list_view_item.dart';
@@ -21,9 +24,22 @@ class MusclesListVieww extends StatelessWidget {
         separatorBuilder: (context, index) =>
             const SizedBox(width: AppSizes.spaceBetweenItems_16),
         scrollDirection: Axis.horizontal,
-        itemBuilder: (context, index) => MusclesListViewItem(
-          muscleEntity: musclesList[index],
-          isLoading: isLoading,
+        itemBuilder: (context, index) => GestureDetector(
+          onTap: () {
+            final ExerciseModel exerciseModel = ExerciseModel(
+              id: musclesList[index].id,
+              name: musclesList[index].name,
+              image: musclesList[index].image,
+            );
+            context.pushNamed(
+              AppRoutes.exerciseRoute,
+              arguments: exerciseModel,
+            );
+          },
+          child: MusclesListViewItem(
+            muscleEntity: musclesList[index],
+            isLoading: isLoading,
+          ),
         ),
       ),
     );

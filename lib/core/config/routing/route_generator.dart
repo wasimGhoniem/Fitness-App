@@ -17,15 +17,14 @@ class RouteGenerator {
       case AppRoutes.signUpRoute:
         return MaterialPageRoute(builder: (_) => const SignUpScreen());
       case AppRoutes.mainLayoutRoute:
-        return MaterialPageRoute(builder: (_) => const MainLayout());
-      case AppRoutes.foodRoute:
-        // final args = settings.arguments as SelectedFoodCategoryModel;
-        final SelectedFoodCategoryModel model = SelectedFoodCategoryModel(
-          mealCategoryName: 'Seafood',
-          selectedIndex: 0,
-        );
+        final int? index = settings.arguments as int?;
         return MaterialPageRoute(
-          builder: (_) => FoodScreen(selectedFoodCategoryModel: model),
+          builder: (_) => MainLayout(initialIndex: index ?? 0),
+        );
+      case AppRoutes.foodRoute:
+        final args = settings.arguments as SelectedFoodCategoryModel;
+        return MaterialPageRoute(
+          builder: (_) => FoodScreen(selectedFoodCategoryModel: args),
         );
 
       case AppRoutes.exerciseRoute:

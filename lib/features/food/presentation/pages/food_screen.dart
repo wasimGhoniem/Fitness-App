@@ -44,45 +44,43 @@ class _FoodScreenState extends State<FoodScreen> {
     return BlocProvider.value(
       value: _viewModel,
       child: Scaffold(
-        body: SafeArea(
-          child: GlassLayout(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            backGroundImage: Assets.assetsImagesHomeBg,
-            body: [
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: AppSizes.padding_16),
-                child: Column(
-                  children: [
-                    const SizedBox(height: AppSizes.spaceBetweenItems_40),
-                    Row(
-                      children: [
-                        InkWell(
-                          child: SvgPicture.asset(
-                            Assets.assetsIconsBackSvg,
-                          ),
-                          onTap: () {
-                            context.pop();
-                          },
-                        ),
-                        const SizedBox(width: AppSizes.spaceBetweenItems_24),
-                        Text(
-                          LocaleKeys.food_recommendation.tr(),
-                          style: Theme.of(context).textTheme.titleMedium,
-                        ),
-
-                      ],
-                    ),
-                     const SizedBox(height: AppSizes.spaceBetweenItems_24),
-                    TabsBlocBuilder(
-                      initialIndex: widget.selectedFoodCategoryModel.selectedIndex,
-                    ),
-                    const SizedBox(height: AppSizes.spaceBetweenItems_24),
-                    const SizedBox(height: 500,child: MealsBlocBuilder()),
-                  ],
-                ),
+        body: GlassLayout(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          backGroundImage: Assets.assetsImagesHomeBg,
+          body: [
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: AppSizes.padding_16,
               ),
-            ],
-          ),
+              child: Column(
+                children: [
+                  const SizedBox(height: AppSizes.spaceBetweenItems_40),
+                  Row(
+                    children: [
+                      InkWell(
+                        child: SvgPicture.asset(Assets.assetsIconsBackSvg),
+                        onTap: () {
+                          context.pop();
+                        },
+                      ),
+                      const SizedBox(width: AppSizes.spaceBetweenItems_24),
+                      Text(
+                        LocaleKeys.food_recommendation.tr(),
+                        style: Theme.of(context).textTheme.titleMedium,
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: AppSizes.spaceBetweenItems_24),
+                  TabsBlocBuilder(
+                    initialIndex:
+                        widget.selectedFoodCategoryModel.selectedIndex,
+                  ),
+                  const SizedBox(height: AppSizes.spaceBetweenItems_24),
+                  const SizedBox(height: 500, child: MealsBlocBuilder()),
+                ],
+              ),
+            ),
+          ],
         ),
       ),
     );
