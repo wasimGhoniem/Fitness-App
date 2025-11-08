@@ -47,5 +47,13 @@
     "food_recommendation": "توصيات الطعام",
     "retry": "إعادة المحاولة",
     "no_meals": "لا توجد وجبات",
-    "no_workouts": " لا توجد تمارين"
+  "no_workouts": " لا توجد تمارين",
+  "ingredients": "المكونات",
+  "ingrediant": "المكونات",
+  "energy": "الطاقة",
+  "protein": "البروتين",
+  "carbs": "الكربوهيدرات",
+  "fat": "الدهون",
+  "unit_kcal": "سعرة حرارية",
+  "unit_g": "غم"
 }

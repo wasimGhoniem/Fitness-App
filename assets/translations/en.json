@@ -47,6 +47,13 @@
     "food_recommendation": "Food Recommendation",
     "retry": "Retry",
     "no_meals": "No meals",
-    "no_workouts": "No Workouts Found"
+  "no_workouts": "No Workouts Found",
+  "ingredients": "Ingredients",
+  "energy": "Energy",
+  "protein": "Protein",
+  "carbs": "Carbs",
+  "fat": "Fat",
+  "unit_kcal": "kcal",
+  "unit_g": "g"
     
 }

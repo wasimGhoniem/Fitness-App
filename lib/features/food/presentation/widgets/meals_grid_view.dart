@@ -20,8 +20,9 @@ class MealsGridView extends StatelessWidget {
       itemBuilder: (context, index) {
         final meal = meals[index];
         return MealGridItem(
-          mealName: meal.mealName ?? '',
-          mealPhoto: meal.mealPhoto ?? '',
+          mealName: meal.mealName!,
+          mealPhoto: meal.mealPhoto!,
+          mealId: meal.mealId!,
         );
       },
     );

@@ -6,4 +6,6 @@ abstract class AppRoutes {
   static const String homeRoute = '/homeRoute';
   static const String foodRoute = '/foodRoute';
   static const String exerciseRoute = '/exerciseRoute';
+  static const String foodRoute='/foodRoute';
+  static const String foodDetailsRoute = '/foodDetailsRoute';
 }

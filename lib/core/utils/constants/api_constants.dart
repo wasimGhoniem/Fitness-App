@@ -25,4 +25,6 @@ abstract class ApiConstants {
   static const String primeMoverMuscleIdParam = 'primeMoverMuscleId';
   static const String difficultyLevelIdParam = 'difficultyLevelId';
   static const String page = 'page';
+  static const String mealsDetails = 'lookup.php';
+  static const String mealsIdQuery = 'i';
 }
