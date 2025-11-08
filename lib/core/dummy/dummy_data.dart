@@ -1,3 +1,4 @@
+import 'package:fitness_app/features/exercise/domain/entities/exercise_entity.dart';
 import 'package:fitness_app/features/food/domain/entity/meal_category_entity.dart';
 import 'package:fitness_app/features/mainLayout/tabs/explore/domain/entities/muscle_entity.dart';
 import 'package:fitness_app/features/mainLayout/tabs/explore/domain/entities/muscle_group_entity.dart';
@@ -43,5 +44,43 @@ final List<MealCategoryEntity> mealCategoryDummyList = const [
     categoryName: 'dasdasd',
     categoryPhoto: '',
     categoryDescription: '',
+  ),
+];
+
+final List<ExerciseEntity> exerciseDummyList = const [
+  ExerciseEntity(
+    imageUrl: '',
+    id: '',
+    name: 'asdads',
+    description: 'asdadasdadasdasdaasdasd',
+    videoUrl: '',
+  ),
+  ExerciseEntity(
+    imageUrl: '',
+    id: '',
+    name: 'asdads',
+    description: 'asdadasdadasdasdaasdasd',
+    videoUrl: '',
+  ),
+  ExerciseEntity(
+    imageUrl: '',
+    id: '',
+    name: 'asdads',
+    description: 'asdadasdadasdasdaasdasd',
+    videoUrl: '',
+  ),
+  ExerciseEntity(
+    imageUrl: '',
+    id: '',
+    name: 'asdads',
+    description: 'asdadasdadasdasdaasdasd',
+    videoUrl: '',
+  ),
+  ExerciseEntity(
+    imageUrl: '',
+    id: '',
+    name: 'asdads',
+    description: 'asdadasdadasdasdaasdasd',
+    videoUrl: '',
   ),
 ];

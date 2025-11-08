@@ -1,3 +1,6 @@
+import 'package:fitness_app/core/config/routing/app_routes.dart';
+import 'package:fitness_app/core/helpers/routing_extensions.dart';
+import 'package:fitness_app/core/models/exercise_model.dart';
 import 'package:fitness_app/core/utils/constants/sizes.dart';
 import 'package:fitness_app/features/mainLayout/tabs/explore/domain/entities/muscle_entity.dart';
 import 'package:fitness_app/features/workouts/presentation/widgets/work_outs_grid_item.dart';
@@ -19,7 +22,20 @@ class WorkOutGridView extends StatelessWidget {
       itemCount: muscles.length,
       itemBuilder: (context, index) {
         final muscle = muscles[index];
-        return WorkOutsGridItem(mealName: muscle.name, mealPhoto: muscle.image);
+        final args = ExerciseModel(
+          id: muscle.id,
+          name: muscle.name,
+          image: muscle.image,
+        );
+        return GestureDetector(
+          onTap: () {
+            context.pushNamed(AppRoutes.exerciseRoute, arguments: args);
+          },
+          child: WorkOutsGridItem(
+            mealName: muscle.name,
+            mealPhoto: muscle.image,
+          ),
+        );
       },
     );
   }

@@ -15,6 +15,12 @@ extension MuscleEntityMapper on MusclesResponseDto {
 
 extension MuscleMapper on MuscleDto {
   MuscleEntity toEntity() {
-    return MuscleEntity(id: id ?? '', name: name ?? '', image: image ?? '');
+    return MuscleEntity(
+      id: id ?? '',
+      name: name ?? '',
+      image:
+          image ??
+          'https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg',
+    );
   }
 }

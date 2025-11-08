@@ -42,7 +42,7 @@ class _WorkOutScreenBodyState extends State<WorkOutScreenBody> {
       child: Scaffold(
         body: GlassLayout(
           crossAxisAlignment: CrossAxisAlignment.start,
-          backGroundImage: Assets.assetsImagesHomeBg,
+          backGroundImage: Assets.assetsImagesHomeBgBigWidth,
           body: [
             Padding(
               padding: const EdgeInsets.symmetric(
