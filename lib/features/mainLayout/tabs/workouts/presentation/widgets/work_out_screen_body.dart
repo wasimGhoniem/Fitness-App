@@ -5,10 +5,10 @@ import 'package:fitness_app/core/utils/constants/app_assets.dart';
 import 'package:fitness_app/core/utils/constants/app_constants.dart';
 import 'package:fitness_app/core/utils/constants/sizes.dart';
 import 'package:fitness_app/core/widgets/glass_layout.dart';
-import 'package:fitness_app/features/workouts/presentation/viewModel/work_out_events.dart';
-import 'package:fitness_app/features/workouts/presentation/viewModel/work_out_view_model.dart';
-import 'package:fitness_app/features/workouts/presentation/widgets/work_out_grid_view_bloc_builder.dart';
-import 'package:fitness_app/features/workouts/presentation/widgets/work_out_tabs_bloc_builder.dart';
+import 'package:fitness_app/features/mainLayout/tabs/workouts/presentation/viewModel/work_out_events.dart';
+import 'package:fitness_app/features/mainLayout/tabs/workouts/presentation/viewModel/work_out_view_model.dart';
+import 'package:fitness_app/features/mainLayout/tabs/workouts/presentation/widgets/work_out_grid_view_bloc_builder.dart';
+import 'package:fitness_app/features/mainLayout/tabs/workouts/presentation/widgets/work_out_tabs_bloc_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

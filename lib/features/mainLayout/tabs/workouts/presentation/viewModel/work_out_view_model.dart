@@ -4,8 +4,8 @@ import 'package:fitness_app/features/mainLayout/tabs/explore/domain/entities/mus
 import 'package:fitness_app/features/mainLayout/tabs/explore/domain/entities/muscles_groups_response_entity.dart';
 import 'package:fitness_app/features/mainLayout/tabs/explore/domain/useCases/get_muscles_by_group_id_use_case.dart';
 import 'package:fitness_app/features/mainLayout/tabs/explore/domain/useCases/get_muscles_groups_use_case.dart';
-import 'package:fitness_app/features/workouts/presentation/viewModel/work_out_events.dart';
-import 'package:fitness_app/features/workouts/presentation/viewModel/work_out_state.dart';
+import 'package:fitness_app/features/mainLayout/tabs/workouts/presentation/viewModel/work_out_events.dart';
+import 'package:fitness_app/features/mainLayout/tabs/workouts/presentation/viewModel/work_out_state.dart';
 import 'package:injectable/injectable.dart';
 
 @injectable

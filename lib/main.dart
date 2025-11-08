@@ -8,6 +8,7 @@ import 'package:fitness_app/core/helpers/app_config_cubit.dart';
 import 'package:fitness_app/core/helpers/block_observer.dart';
 import 'package:fitness_app/core/utils/constants/app_constants.dart';
 import 'package:fitness_app/core/utils/constants/sizes.dart';
+import 'package:fitness_app/features/mainLayout/main_layout.dart';
 import 'package:fitness_app/firebase_options.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -48,7 +49,8 @@ class FitnessApp extends StatelessWidget {
             breakpoints: AppSizes.appBreakPoints,
             breakpointsLandscape: AppSizes.appLandscapeBreakPoints,
             child: MaterialApp(
-              initialRoute: initialRoute,
+              // initialRoute: initialRoute,
+              home: const MainLayout(initialIndex: 0),
               debugShowCheckedModeBanner: false,
               localizationsDelegates: context.localizationDelegates,
               supportedLocales: context.supportedLocales,
