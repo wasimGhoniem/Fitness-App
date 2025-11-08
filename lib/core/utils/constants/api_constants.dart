@@ -5,7 +5,7 @@ abstract class ApiConstants {
   static const String applicationJson = 'application/json';
   static const String bearer = 'Bearer';
   static const String authorization = 'Authorization';
-  static const String signIn='auth/signin';
+  static const String signIn = 'auth/signin';
   static const String signUp = 'auth/signup';
   static const String id = 'id';
   static const String randomMusclesEndPoint = 'muscles/random';
@@ -18,4 +18,11 @@ abstract class ApiConstants {
   static const String mealsByCategoryQuery = 'c';
   static const String fitnessDio = 'fitnessDio';
   static const String mealsDio = 'mealsDio';
+  static const String difficultyLevelsEndpoint =
+      'levels/difficulty-levels/by-prime-mover';
+  static const String exercisesByMuscleAndDifficultyEndpoint =
+      'exercises/by-muscle-difficulty';
+  static const String primeMoverMuscleIdParam = 'primeMoverMuscleId';
+  static const String difficultyLevelIdParam = 'difficultyLevelId';
+  static const String page = 'page';
 }

@@ -1,9 +1,11 @@
 import 'package:fitness_app/core/config/routing/app_routes.dart';
+import 'package:fitness_app/core/models/exercise_model.dart';
+import 'package:fitness_app/core/models/selected_food_category_model.dart';
 import 'package:fitness_app/features/auth/presentation/pages/sign_in_screen.dart';
 import 'package:fitness_app/features/auth/presentation/pages/sign_up_screen.dart';
-import 'package:fitness_app/features/mainLayout/main_layout.dart';
-import 'package:fitness_app/core/models/selected_food_category_model.dart';
+import 'package:fitness_app/features/exercise/presentation/pages/exercise_screen.dart';
 import 'package:fitness_app/features/food/presentation/pages/food_screen.dart';
+import 'package:fitness_app/features/mainLayout/main_layout.dart';
 import 'package:flutter/material.dart';
 
 class RouteGenerator {
@@ -23,6 +25,12 @@ class RouteGenerator {
         );
         return MaterialPageRoute(
           builder: (_) => FoodScreen(selectedFoodCategoryModel: model),
+        );
+
+      case AppRoutes.exerciseRoute:
+        final args = settings.arguments as ExerciseModel;
+        return MaterialPageRoute(
+          builder: (_) => ExerciseScreen(exerciseModel: args),
         );
       default:
         return unDefinedRoute();

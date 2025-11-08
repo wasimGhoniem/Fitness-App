@@ -27,8 +27,6 @@ class WorkOutsTaps extends StatelessWidget {
             isScrollable: true,
             tabs: musclesGroup.map((muscle) => Tab(text: muscle.name)).toList(),
           ),
-          // const SizedBox(height: AppSizes.spaceBetweenItems_8),
-          //  TabBarView(children: )
         ],
       ),
     );
