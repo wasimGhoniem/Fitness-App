@@ -59,67 +59,74 @@ class _SignUpWidgetState extends State<SignUpWidget> {
     return BlocProvider.value(
       value: _signupViewModel,
       child: GlassLayout(
-        crossAxisAlignment: CrossAxisAlignment.start,
         backGroundImage: Assets.assetsImagesAuthBg,
-        body: [
-          const SizedBox(height: AppSizes.spaceBetweenItems_40),
-          const CustomAppBarr(),
-          const Spacer(),
-          CustomText(
-            text: LocaleKeys.hey_there.tr(),
-            style: Theme.of(context).textTheme.bodyMedium!,
-          ),
-          CustomText(
-            text: LocaleKeys.create_an_account.tr(),
-            style: Theme.of(
-              context,
-            ).textTheme.bodyMedium!.copyWith(fontWeight: FontWeight.w800),
-          ),
-          const SizedBox(height: AppSizes.spaceBetweenItems_16),
-          GlassContainer(
-            width: double.infinity,
-            contentPadding: const EdgeInsetsGeometry.symmetric(
-              horizontal: AppSizes.padding_32,
+        child: CustomScrollView(
+          slivers: [
+            SliverFillRemaining(
+              hasScrollBody: false,
+              child: Column(
+                children: [
+                  const SizedBox(height: AppSizes.spaceBetweenItems_40),
+                  const CustomAppBarr(),
+                  const Spacer(),
+                  CustomText(
+                    text: LocaleKeys.hey_there.tr(),
+                    style: Theme.of(context).textTheme.bodyMedium!,
+                  ),
+                  CustomText(
+                    text: LocaleKeys.create_an_account.tr(),
+                    style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                      fontWeight: FontWeight.w800,
+                    ),
+                  ),
+                  const SizedBox(height: AppSizes.spaceBetweenItems_16),
+                  GlassContainer(
+                    width: double.infinity,
+                    contentPadding: const EdgeInsetsGeometry.symmetric(
+                      horizontal: AppSizes.padding_32,
+                    ),
+                    body: [
+                      const SizedBox(height: AppSizes.spaceBetweenItems_24),
+                      Text(
+                        LocaleKeys.register.tr(),
+                        style: Theme.of(context).textTheme.titleMedium!
+                            .copyWith(fontWeight: FontWeight.w800),
+                      ),
+                      const SizedBox(height: AppSizes.spaceBetweenItems_16),
+                      FormWidget(
+                        formKey: _formKey,
+                        emailController: _emailController,
+                        firstNameController: _firstNameController,
+                        lastNameController: _lastNameController,
+                        passwordController: _passwordController,
+                      ),
+                      const SizedBox(height: AppSizes.spaceBetweenItems_16),
+                      AuthRedirectTextSpan(
+                        onTap: () {
+                          Navigator.pushNamed(context, AppRoutes.signInRoute);
+                        },
+                        question: LocaleKeys.already_have_an_account.tr(),
+                        action: LocaleKeys.login.tr(),
+                      ),
+                      const SizedBox(height: AppSizes.spaceBetweenItems_16),
+                      CustomElvatedButtonBlocConsumer(
+                        emailController: _emailController,
+                        firstNameController: _firstNameController,
+                        passwordController: _passwordController,
+                        lastNameController: _lastNameController,
+                        formKey: _formKey,
+                        widget: widget,
+                        signupViewModel: _signupViewModel,
+                      ),
+                      const SizedBox(height: AppSizes.spaceBetweenItems_32),
+                    ],
+                  ),
+                  const SizedBox(height: AppSizes.spaceBetweenItems_32),
+                ],
+              ),
             ),
-            body: [
-              const SizedBox(height: AppSizes.spaceBetweenItems_24),
-              Text(
-                LocaleKeys.register.tr(),
-                style: Theme.of(
-                  context,
-                ).textTheme.titleMedium!.copyWith(fontWeight: FontWeight.w800),
-              ),
-              const SizedBox(height: AppSizes.spaceBetweenItems_16),
-              FormWidget(
-                formKey: _formKey,
-                emailController: _emailController,
-                firstNameController: _firstNameController,
-                lastNameController: _lastNameController,
-                passwordController: _passwordController,
-              ),
-              const SizedBox(height: AppSizes.spaceBetweenItems_16),
-              AuthRedirectTextSpan(
-                onTap: () {
-                  Navigator.pushNamed(context, AppRoutes.signInRoute);
-                },
-                question: LocaleKeys.already_have_an_account.tr(),
-                action: LocaleKeys.login.tr(),
-              ),
-              const SizedBox(height: AppSizes.spaceBetweenItems_16),
-              CustomElvatedButtonBlocConsumer(
-                emailController: _emailController,
-                firstNameController: _firstNameController,
-                passwordController: _passwordController,
-                lastNameController: _lastNameController,
-                formKey: _formKey,
-                widget: widget,
-                signupViewModel: _signupViewModel,
-              ),
-              const SizedBox(height: AppSizes.spaceBetweenItems_32),
-            ],
-          ),
-          const SizedBox(height: AppSizes.spaceBetweenItems_32),
-        ],
+          ],
+        ),
       ),
     );
   }

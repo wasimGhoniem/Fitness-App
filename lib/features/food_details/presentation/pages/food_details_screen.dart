@@ -8,9 +8,9 @@ import 'package:fitness_app/features/food_details/domain/entities/meal_entity.da
 import 'package:fitness_app/features/food_details/presentation/viewModel/food_details_event.dart';
 import 'package:fitness_app/features/food_details/presentation/viewModel/food_details_state.dart';
 import 'package:fitness_app/features/food_details/presentation/viewModel/food_details_view_model.dart';
-import 'package:fitness_app/features/food_details/presentation/widget/ingredient_item.dart';
 import 'package:fitness_app/features/food_details/presentation/widget/food_details_error_view.dart';
 import 'package:fitness_app/features/food_details/presentation/widget/food_details_header_section.dart';
+import 'package:fitness_app/features/food_details/presentation/widget/ingredient_item.dart';
 import 'package:fitness_app/features/food_details/presentation/widget/ingredients_title.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -66,37 +66,41 @@ class _FoodDetailsScreenState extends State<FoodDetailsScreen> {
               final MealEntity mealDetails = state.MealDetails!;
 
               return GlassLayout(
-                crossAxisAlignment: CrossAxisAlignment.start,
                 backGroundImage: Assets.assetsImagesHomeBg,
-                body: [
-                  FoodDetailsHeaderSection(
-                    videoUrl: mealDetails.youtubeUrl!,
-                    imageUrl: mealDetails.imageUrl!,
-                    title: mealDetails.name,
-                    subtitle: mealDetails.instructions!,
-                    onBack: () => context.pop(),
+                child: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      FoodDetailsHeaderSection(
+                        videoUrl: mealDetails.youtubeUrl!,
+                        imageUrl: mealDetails.imageUrl!,
+                        title: mealDetails.name,
+                        subtitle: mealDetails.instructions!,
+                        onBack: () => context.pop(),
+                      ),
+                      const SizedBox(height: AppSizes.spaceBetweenItems_16),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: AppSizes.borderRadius_16,
+                        ),
+                        child: IngredientsTitle(
+                          textStyle: Theme.of(context).textTheme.bodyLarge!,
+                        ),
+                      ),
+                      const SizedBox(height: AppSizes.padding_12),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: AppSizes.borderRadius_16,
+                        ),
+                        child: IngredientsList(
+                          ingredients: mealDetails.ingredients,
+                          measures: mealDetails.measures,
+                        ),
+                      ),
+                      const SizedBox(height: AppSizes.spaceBetweenItems_16),
+                    ],
                   ),
-                  const SizedBox(height: AppSizes.spaceBetweenItems_16),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: AppSizes.borderRadius_16,
-                    ),
-                    child: IngredientsTitle(
-                      textStyle: Theme.of(context).textTheme.bodyLarge!,
-                    ),
-                  ),
-                  const SizedBox(height: AppSizes.padding_12),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: AppSizes.borderRadius_16,
-                    ),
-                    child: IngredientsList(
-                      ingredients: mealDetails.ingredients,
-                      measures: mealDetails.measures,
-                    ),
-                  ),
-                  const SizedBox(height: AppSizes.spaceBetweenItems_16),
-                ],
+                ),
               );
             },
           ),

@@ -37,15 +37,18 @@ class _ExerciseScreenBodyState extends State<ExerciseScreenBody> {
       value: _exerciseViewModel,
       child: GlassLayout(
         backGroundImage: Assets.assetsImagesHomeBgBigWidth,
-        body: [
-          ExerciseHeader(
-            exerciseModel: widget.exerciseModel,
-            exerciseViewModel: _exerciseViewModel,
-          ),
-          const SizedBox(height: AppSizes.spaceBetweenItems_8),
-          const ExerciseFooter(),
-          const SizedBox(height: AppSizes.spaceBetweenItems_40),
-        ],
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            ExerciseHeader(
+              exerciseModel: widget.exerciseModel,
+              exerciseViewModel: _exerciseViewModel,
+            ),
+            const SizedBox(height: AppSizes.spaceBetweenItems_8),
+            const ExerciseFooter(),
+            const SizedBox(height: AppSizes.spaceBetweenItems_40),
+          ],
+        ),
       ),
     );
   }

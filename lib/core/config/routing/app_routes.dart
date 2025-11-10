@@ -7,4 +7,5 @@ abstract class AppRoutes {
   static const String foodRoute = '/foodRoute';
   static const String exerciseRoute = '/exerciseRoute';
   static const String foodDetailsRoute = '/foodDetailsRoute';
+  static const String onBoardingRoute = '/onBoardingRoute';
 }

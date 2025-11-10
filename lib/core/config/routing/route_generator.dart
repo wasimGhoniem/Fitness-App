@@ -7,6 +7,7 @@ import 'package:fitness_app/features/exercise/presentation/pages/exercise_screen
 import 'package:fitness_app/features/food/presentation/pages/food_screen.dart';
 import 'package:fitness_app/features/food_details/presentation/pages/food_details_screen.dart';
 import 'package:fitness_app/features/mainLayout/main_layout.dart';
+import 'package:fitness_app/features/on_boarding/presentation/pages/on_boarding_screen.dart';
 import 'package:flutter/material.dart';
 
 class RouteGenerator {
@@ -37,7 +38,8 @@ class RouteGenerator {
         return MaterialPageRoute(
           builder: (_) => FoodDetailsScreen(mealId: mealId),
         );
-
+      case AppRoutes.onBoardingRoute:
+        return MaterialPageRoute(builder: (_) => const OnBoardingScreen());
       default:
         return unDefinedRoute();
     }

@@ -45,42 +45,46 @@ class _FoodScreenState extends State<FoodScreen> {
       value: _viewModel,
       child: Scaffold(
         body: GlassLayout(
-          crossAxisAlignment: CrossAxisAlignment.start,
           backGroundImage: Assets.assetsImagesHomeBg,
-          body: [
-            Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: AppSizes.padding_16,
-              ),
-              child: Column(
-                children: [
-                  const SizedBox(height: AppSizes.spaceBetweenItems_40),
-                  Row(
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: AppSizes.padding_16,
+                  ),
+                  child: Column(
                     children: [
-                      InkWell(
-                        child: SvgPicture.asset(Assets.assetsIconsBackSvg),
-                        onTap: () {
-                          context.pop();
-                        },
+                      const SizedBox(height: AppSizes.spaceBetweenItems_40),
+                      Row(
+                        children: [
+                          InkWell(
+                            child: SvgPicture.asset(Assets.assetsIconsBackSvg),
+                            onTap: () {
+                              context.pop();
+                            },
+                          ),
+                          const SizedBox(width: AppSizes.spaceBetweenItems_24),
+                          Text(
+                            LocaleKeys.food_recommendation.tr(),
+                            style: Theme.of(context).textTheme.titleMedium,
+                          ),
+                        ],
                       ),
-                      const SizedBox(width: AppSizes.spaceBetweenItems_24),
-                      Text(
-                        LocaleKeys.food_recommendation.tr(),
-                        style: Theme.of(context).textTheme.titleMedium,
+                      const SizedBox(height: AppSizes.spaceBetweenItems_24),
+                      TabsBlocBuilder(
+                        initialIndex:
+                            widget.selectedFoodCategoryModel.selectedIndex,
                       ),
+                      const SizedBox(height: AppSizes.spaceBetweenItems_24),
+                      const SizedBox(height: 500, child: MealsBlocBuilder()),
                     ],
                   ),
-                  const SizedBox(height: AppSizes.spaceBetweenItems_24),
-                  TabsBlocBuilder(
-                    initialIndex:
-                        widget.selectedFoodCategoryModel.selectedIndex,
-                  ),
-                  const SizedBox(height: AppSizes.spaceBetweenItems_24),
-                  const SizedBox(height: 500, child: MealsBlocBuilder()),
-                ],
-              ),
+                ),
+              ],
             ),
-          ],
+          ),
         ),
       ),
     );

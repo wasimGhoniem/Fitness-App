@@ -52,60 +52,64 @@ class _ExploreScreenBodyState extends State<ExploreScreenBody> {
       value: _exploreViewModel,
       child: GlassLayout(
         backGroundImage: Assets.assetsImagesHomeBgBigWidth,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        body: [
-          const SizedBox(height: AppSizes.spaceBetweenItems_40),
-          const ProfileBlocBuilder(),
-          const SizedBox(height: AppSizes.spaceBetweenItems_24),
-          const RecommendationToDayTextWidget(),
-          const MusclesListViewBlocBuilder(),
-          const SizedBox(height: AppSizes.spaceBetweenItems_24),
-          SectionHeader(
-            title: LocaleKeys.upcoming_workouts.tr(),
-            onTap: () {
-              context.pushReplacementNamed(
-                AppRoutes.mainLayoutRoute,
-                arguments: 2,
-              );
-            },
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SizedBox(height: AppSizes.spaceBetweenItems_40),
+              const ProfileBlocBuilder(),
+              const SizedBox(height: AppSizes.spaceBetweenItems_24),
+              const RecommendationToDayTextWidget(),
+              const MusclesListViewBlocBuilder(),
+              const SizedBox(height: AppSizes.spaceBetweenItems_24),
+              SectionHeader(
+                title: LocaleKeys.upcoming_workouts.tr(),
+                onTap: () {
+                  context.pushReplacementNamed(
+                    AppRoutes.mainLayoutRoute,
+                    arguments: 2,
+                  );
+                },
+              ),
+              const SizedBox(height: AppSizes.spaceBetweenItems_8),
+              const TapsBlocBuilder(),
+              const SizedBox(height: AppSizes.spaceBetweenItems_8),
+              const MusclesGroupByIdListViewwBlocBuilder(),
+              const SizedBox(height: AppSizes.spaceBetweenItems_24),
+              SectionHeader(
+                title: LocaleKeys.recommended_for_you.tr(),
+                onTap: () {
+                  final arg = SelectedFoodCategoryModel(
+                    mealCategoryName: '',
+                    selectedIndex: 0,
+                  );
+                  context.pushNamed(AppRoutes.foodRoute, arguments: arg);
+                },
+              ),
+              const SizedBox(height: AppSizes.spaceBetweenItems_8),
+              BlocBuilder<ExploreViewModel, ExploreState>(
+                builder: (context, state) {
+                  if (state.isCategoriesLoading) {
+                    return ReccomendedForYouListView(
+                      isLoading: true,
+                      musclesList: mealCategoryDummyList,
+                    );
+                  }
+                  if (state.categoriesFailure != null) {
+                    return Center(
+                      child: Text(state.categoriesFailure!.errorMessage),
+                    );
+                  }
+                  return ReccomendedForYouListView(
+                    isLoading: false,
+                    musclesList: state.categoriesResponse!.categories!,
+                  );
+                },
+              ),
+              const SizedBox(height: 150),
+            ],
           ),
-          const SizedBox(height: AppSizes.spaceBetweenItems_8),
-          const TapsBlocBuilder(),
-          const SizedBox(height: AppSizes.spaceBetweenItems_8),
-          const MusclesGroupByIdListViewwBlocBuilder(),
-          const SizedBox(height: AppSizes.spaceBetweenItems_24),
-          SectionHeader(
-            title: LocaleKeys.recommended_for_you.tr(),
-            onTap: () {
-              final arg = SelectedFoodCategoryModel(
-                mealCategoryName: '',
-                selectedIndex: 0,
-              );
-              context.pushNamed(AppRoutes.foodRoute, arguments: arg);
-            },
-          ),
-          const SizedBox(height: AppSizes.spaceBetweenItems_8),
-          BlocBuilder<ExploreViewModel, ExploreState>(
-            builder: (context, state) {
-              if (state.isCategoriesLoading) {
-                return ReccomendedForYouListView(
-                  isLoading: true,
-                  musclesList: mealCategoryDummyList,
-                );
-              }
-              if (state.categoriesFailure != null) {
-                return Center(
-                  child: Text(state.categoriesFailure!.errorMessage),
-                );
-              }
-              return ReccomendedForYouListView(
-                isLoading: false,
-                musclesList: state.categoriesResponse!.categories!,
-              );
-            },
-          ),
-          const SizedBox(height: 150),
-        ],
+        ),
       ),
     );
   }

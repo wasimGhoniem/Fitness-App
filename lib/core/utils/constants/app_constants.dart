@@ -8,6 +8,7 @@ abstract class AppConstants {
   static const String ar = 'ar';
   static const String assetsPath = 'assets/translations';
   static const String token = 'token';
+  static const String isEnboardingSeen = 'isEnboardingSeen';
   static const String rememberMe = 'remember_me';
   static const String male = 'male';
   static const String female = 'female';

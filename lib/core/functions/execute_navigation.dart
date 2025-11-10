@@ -5,10 +5,12 @@ import 'package:fitness_app/core/utils/constants/app_constants.dart';
 
 Future<String> getInitialRoute() async {
   final storage = getIt<Storage>(instanceName: AppConstants.secureStorage);
-  final rememberMeValue = await storage.read(key: AppConstants.rememberMe);
+  final isOnBoardingSeen = await storage.read(
+    key: AppConstants.isEnboardingSeen,
+  );
 
-  if (rememberMeValue.toLowerCase() == 'true') {
-    return AppRoutes.mainLayoutRoute;
+  if (isOnBoardingSeen.toLowerCase() == 'true') {
+    return AppRoutes.signInRoute;
   }
-  return AppRoutes.signInRoute;
+  return AppRoutes.onBoardingRoute;
 }

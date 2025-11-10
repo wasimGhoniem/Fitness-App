@@ -29,63 +29,72 @@ class GinderWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return GlassLayout(
       backGroundImage: Assets.assetsImagesAuthBg,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      body: [
-        const SizedBox(height: AppSizes.spaceBetweenItems_40),
-        const CustomAppBarr(),
-        const Spacer(),
-        Align(
-          child: ProgressWidget(
-            valueNotifier: pageNotifier,
-            TotalSteps: totalSteps!,
-          ),
-        ),
-        const SizedBox(height: AppSizes.spaceBetweenItems_10),
-        CustomText(
-          text: LocaleKeys.tellUsAboutYourself.tr(),
-          style: Theme.of(
-            context,
-          ).textTheme.bodyMedium!.copyWith(fontWeight: FontWeight.w800),
-        ),
-        CustomText(
-          text: LocaleKeys.weNeedToKnowYourGender.tr(),
-          style: Theme.of(context).textTheme.bodyMedium!,
-        ),
-        const SizedBox(height: AppSizes.spaceBetweenItems_16),
-        GlassContainer(
-          width: double.infinity,
-          contentPadding: const EdgeInsetsGeometry.symmetric(
-            horizontal: AppSizes.padding_16,
-            vertical: AppSizes.padding_24,
-          ),
-          body: [
-            ValueListenableBuilder(
-              valueListenable: selectedGenderNotifier,
-              builder: (context, value, child) {
-                return GenderSelector(
-                  genderEnumNotifier: selectedGenderNotifier,
-                );
-              },
-            ),
-            const SizedBox(height: AppSizes.spaceBetweenItems_24),
-            CustomElevatedButton(
-              onPressed: () {
-                if (selectedGenderNotifier.value == null) {
-                  return;
-                }
-                pageController.nextPage(
-                  duration: const Duration(milliseconds: 500),
-                  curve: Curves.easeInOut,
-                );
-              },
-              isLoading: false,
-              widget: Text(LocaleKeys.next.tr()),
-            ),
-          ],
-        ),
 
-        const Spacer(flex: 2),
-      ],
+      child: CustomScrollView(
+        slivers: [
+          SliverFillRemaining(
+            hasScrollBody: false,
+            child: Column(
+              children: [
+                const SizedBox(height: AppSizes.spaceBetweenItems_40),
+                const CustomAppBarr(),
+                const Spacer(),
+                Align(
+                  child: ProgressWidget(
+                    valueNotifier: pageNotifier,
+                    TotalSteps: totalSteps!,
+                  ),
+                ),
+                const SizedBox(height: AppSizes.spaceBetweenItems_10),
+                CustomText(
+                  text: LocaleKeys.tellUsAboutYourself.tr(),
+                  style: Theme.of(
+                    context,
+                  ).textTheme.bodyMedium!.copyWith(fontWeight: FontWeight.w800),
+                ),
+                CustomText(
+                  text: LocaleKeys.weNeedToKnowYourGender.tr(),
+                  style: Theme.of(context).textTheme.bodyMedium!,
+                ),
+                const SizedBox(height: AppSizes.spaceBetweenItems_16),
+                GlassContainer(
+                  width: double.infinity,
+                  contentPadding: const EdgeInsetsGeometry.symmetric(
+                    horizontal: AppSizes.padding_16,
+                    vertical: AppSizes.padding_24,
+                  ),
+                  body: [
+                    ValueListenableBuilder(
+                      valueListenable: selectedGenderNotifier,
+                      builder: (context, value, child) {
+                        return GenderSelector(
+                          genderEnumNotifier: selectedGenderNotifier,
+                        );
+                      },
+                    ),
+                    const SizedBox(height: AppSizes.spaceBetweenItems_24),
+                    CustomElevatedButton(
+                      onPressed: () {
+                        if (selectedGenderNotifier.value == null) {
+                          return;
+                        }
+                        pageController.nextPage(
+                          duration: const Duration(milliseconds: 500),
+                          curve: Curves.easeInOut,
+                        );
+                      },
+                      isLoading: false,
+                      widget: Text(LocaleKeys.next.tr()),
+                    ),
+                  ],
+                ),
+
+                const Spacer(flex: 2),
+              ],
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

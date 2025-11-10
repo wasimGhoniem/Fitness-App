@@ -12,6 +12,7 @@ class GlassContainer extends StatelessWidget {
     this.contentPadding = const EdgeInsets.all(AppSizes.padding_16),
     this.opacity = 0.1,
     this.radius = AppSizes.borderRadius_50,
+    this.borderRadius,
   });
 
   final List<Widget> body;
@@ -20,6 +21,7 @@ class GlassContainer extends StatelessWidget {
   final EdgeInsetsGeometry contentPadding;
   final double? opacity;
   final double? radius;
+  final BorderRadius? borderRadius;
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +36,7 @@ class GlassContainer extends StatelessWidget {
       width: width ?? double.infinity,
       // ignore: deprecated_member_use
       color: AppColorsLight.glassContainerColor.withOpacity(opacity!),
-      borderRadius: BorderRadius.circular(radius!),
+      borderRadius: borderRadius ?? BorderRadius.circular(radius!),
     );
   }
 }
