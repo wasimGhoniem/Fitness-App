@@ -61,6 +61,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
       child: GlassLayout(
         backGroundImage: Assets.assetsImagesAuthBg,
         child: CustomScrollView(
+          reverse: true,
           slivers: [
             SliverFillRemaining(
               hasScrollBody: false,
@@ -121,7 +122,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                       const SizedBox(height: AppSizes.spaceBetweenItems_32),
                     ],
                   ),
-                  const SizedBox(height: AppSizes.spaceBetweenItems_32),
+                  const Spacer(flex: 1),
                 ],
               ),
             ),

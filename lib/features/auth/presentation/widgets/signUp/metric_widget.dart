@@ -21,6 +21,8 @@ class UserMetricWidget extends StatelessWidget {
     this.totalSteps = 7,
     required this.pageNotifer,
     required this.text,
+    required this.maxValue,
+    required this.minValue,
   });
   final ValueNotifier<int> valueNotifier;
   final PageController pageController;
@@ -28,6 +30,8 @@ class UserMetricWidget extends StatelessWidget {
   final int? totalSteps;
   final ValueNotifier<int> pageNotifer;
   final String text;
+  final int maxValue;
+  final int minValue;
 
   @override
   Widget build(BuildContext context) {
@@ -78,23 +82,10 @@ class UserMetricWidget extends StatelessWidget {
                                   color: Theme.of(context).colorScheme.primary,
                                 ),
                           ),
-                          NumberPicker(
-                            itemHeight: 80,
-                            selectedTextStyle: Theme.of(context)
-                                .textTheme
-                                .displayLarge!
-                                .copyWith(
-                                  color: Theme.of(context).colorScheme.primary,
-                                ),
-                            textStyle: Theme.of(context)
-                                .textTheme
-                                .headlineMedium!
-                                .copyWith(fontSize: AppSizes.font_32),
-                            axis: Axis.horizontal,
-                            value: valueNotifier.value,
-                            minValue: 0,
-                            maxValue: 300,
-                            onChanged: (value) => valueNotifier.value = value,
+                          CustomNumberPicker(
+                            valueNotifier: valueNotifier,
+                            minValue: minValue,
+                            maxValue: maxValue,
                           ),
                           SvgPicture.asset('assets/icons/Vector.svg'),
                         ],
@@ -122,6 +113,48 @@ class UserMetricWidget extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+}
+
+class CustomNumberPicker extends StatelessWidget {
+  const CustomNumberPicker({
+    super.key,
+    required this.valueNotifier,
+    required this.minValue,
+    required this.maxValue,
+    this.axis = Axis.horizontal,
+    this.itemHeight = 80,
+  });
+  final ValueNotifier<int> valueNotifier;
+  final int minValue;
+  final int maxValue;
+  final Axis axis;
+  final double itemHeight;
+
+  @override
+  Widget build(BuildContext context) {
+    return ValueListenableBuilder<int>(
+      valueListenable: valueNotifier,
+      builder: (context, value, _) {
+        // تأكد إن القيمة داخل الرينج عشان تمنع الأخطاء
+        final clampedValue = value.clamp(minValue, maxValue);
+
+        return NumberPicker(
+          itemHeight: itemHeight,
+          axis: axis,
+          value: clampedValue,
+          minValue: minValue,
+          maxValue: maxValue,
+          onChanged: (newValue) => valueNotifier.value = newValue,
+          selectedTextStyle: Theme.of(context).textTheme.displayLarge!.copyWith(
+            color: Theme.of(context).colorScheme.primary,
+          ),
+          textStyle: Theme.of(
+            context,
+          ).textTheme.headlineMedium!.copyWith(fontSize: AppSizes.font_32),
+        );
+      },
     );
   }
 }

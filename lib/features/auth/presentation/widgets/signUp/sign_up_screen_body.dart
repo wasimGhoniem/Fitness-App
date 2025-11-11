@@ -43,9 +43,9 @@ class _SignUpScreenBodyState extends State<SignUpScreenBody> {
   @override
   void initState() {
     _selectedGenderNotifier = ValueNotifier(null);
-    _ageNotifier = ValueNotifier(0);
-    _heightNotifier = ValueNotifier(0);
-    _weightNotifier = ValueNotifier(0);
+    _ageNotifier = ValueNotifier(10);
+    _heightNotifier = ValueNotifier(80);
+    _weightNotifier = ValueNotifier(40);
     _pageController = PageController();
     _goalNotifier = ValueNotifier(null);
     _PhysicalNotifier = ValueNotifier(null);
@@ -79,6 +79,8 @@ class _SignUpScreenBodyState extends State<SignUpScreenBody> {
           pageController: _pageController,
           question: LocaleKeys.howOldAreYou.tr(),
           pageNotifer: _pageNotifer,
+          minValue: 10,
+          maxValue: 80,
         ),
         UserMetricWidget(
           text: LocaleKeys.label_kg.tr(),
@@ -86,6 +88,8 @@ class _SignUpScreenBodyState extends State<SignUpScreenBody> {
           pageController: _pageController,
           question: LocaleKeys.whatIsYourWeight.tr(),
           pageNotifer: _pageNotifer,
+          minValue: 40,
+          maxValue: 600,
         ),
         UserMetricWidget(
           text: LocaleKeys.label_cm.tr(),
@@ -93,6 +97,8 @@ class _SignUpScreenBodyState extends State<SignUpScreenBody> {
           pageController: _pageController,
           question: LocaleKeys.whatIsYourHeight.tr(),
           pageNotifer: _pageNotifer,
+          minValue: 80,
+          maxValue: 300,
         ),
         GoalAndPhysicalWidget<GoalEnum>(
           choices: widget.goals,

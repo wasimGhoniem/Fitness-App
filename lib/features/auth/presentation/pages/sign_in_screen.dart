@@ -64,83 +64,89 @@ class _SignInScreenState extends State<SignInScreen> {
             );
           }
         },
-        child: GlassLayout(
-          backGroundImage: Assets.assetsImagesAuthBg,
-          child: Column(
-            children: [
-              const SizedBox(height: AppSizes.spaceBetweenItems_48),
-              BuildHeaderSection(
-                imagePath: Assets.assetsIconsFitnessAppIcon,
-                firstText: LocaleKeys.hey_there.tr(),
-                secondText: LocaleKeys.welcome_back.tr(),
-              ),
-
-              const SizedBox(height: AppSizes.spaceBetweenItems_16),
-              GlassContainer(
-                width: double.infinity,
-                contentPadding: const EdgeInsets.symmetric(
-                  horizontal: AppSizes.padding_32,
-                ),
-                body: [
-                  const SizedBox(height: AppSizes.spaceBetweenItems_24),
-                  Text(
-                    LocaleKeys.login.tr(),
-                    style: Theme.of(context).textTheme.titleMedium!.copyWith(
-                      fontWeight: FontWeight.w800,
-                    ),
+        child: Scaffold(
+          body: GlassLayout(
+            backGroundImage: Assets.assetsImagesAuthBg,
+            child: SingleChildScrollView(
+              reverse: true,
+              child: Column(
+                children: [
+                  const SizedBox(height: AppSizes.spaceBetweenItems_48),
+                  BuildHeaderSection(
+                    imagePath: Assets.assetsIconsFitnessAppIcon,
+                    firstText: LocaleKeys.hey_there.tr(),
+                    secondText: LocaleKeys.welcome_back.tr(),
                   ),
+
                   const SizedBox(height: AppSizes.spaceBetweenItems_16),
-                  SignInForm(viewModel: _viewModel),
-                  Align(
-                    alignment: AlignmentGeometry.centerRight,
-                    child: TextButton(
-                      onPressed: () {
-                        //todo navigate to forget password},
-                      },
-                      child: Text(
-                        LocaleKeys.forget_password.tr(),
-                        style: Theme.of(context).textTheme.labelLarge!.copyWith(
-                          color: Theme.of(context).primaryColor,
+                  GlassContainer(
+                    width: double.infinity,
+                    contentPadding: const EdgeInsets.symmetric(
+                      horizontal: AppSizes.padding_32,
+                    ),
+                    body: [
+                      const SizedBox(height: AppSizes.spaceBetweenItems_24),
+                      Text(
+                        LocaleKeys.login.tr(),
+                        style: Theme.of(context).textTheme.titleMedium!
+                            .copyWith(fontWeight: FontWeight.w800),
+                      ),
+                      const SizedBox(height: AppSizes.spaceBetweenItems_16),
+                      SignInForm(viewModel: _viewModel),
+                      Align(
+                        alignment: AlignmentGeometry.centerRight,
+                        child: TextButton(
+                          onPressed: () {
+                            //todo navigate to forget password},
+                          },
+                          child: Text(
+                            LocaleKeys.forget_password.tr(),
+                            style: Theme.of(context).textTheme.labelLarge!
+                                .copyWith(
+                                  color: Theme.of(context).primaryColor,
+                                ),
+                          ),
                         ),
                       ),
-                    ),
-                  ),
-                  const SizedBox(height: AppSizes.spaceBetweenItems_40),
-                  BlocBuilder<SignInViewModel, SignInState>(
-                    builder: (context, state) {
-                      return CustomElevatedButton(
-                        onPressed: () {
-                          _viewModel.doIntent(
-                            SignInActionEvent(
-                              request: SignInRequestEntity(
-                                email: _viewModel.emailController.text,
-                                password: _viewModel.passwordController.text,
-                              ),
+                      const SizedBox(height: AppSizes.spaceBetweenItems_40),
+                      BlocBuilder<SignInViewModel, SignInState>(
+                        builder: (context, state) {
+                          return CustomElevatedButton(
+                            onPressed: () {
+                              _viewModel.doIntent(
+                                SignInActionEvent(
+                                  request: SignInRequestEntity(
+                                    email: _viewModel.emailController.text,
+                                    password:
+                                        _viewModel.passwordController.text,
+                                  ),
+                                ),
+                              );
+                            },
+                            isLoading: state.isLoading,
+                            widget: Text(
+                              LocaleKeys.login.tr(),
+                              style: Theme.of(context).textTheme.labelLarge!
+                                  .copyWith(fontWeight: FontWeight.w800),
                             ),
                           );
                         },
-                        isLoading: state.isLoading,
-                        widget: Text(
-                          LocaleKeys.login.tr(),
-                          style: Theme.of(context).textTheme.labelLarge!
-                              .copyWith(fontWeight: FontWeight.w800),
-                        ),
-                      );
-                    },
-                  ),
+                      ),
 
-                  const SizedBox(height: AppSizes.spaceBetweenItems_8),
-                  AuthRedirectTextSpan(
-                    onTap: () {
-                      context.pushNamed(AppRoutes.signUpRoute);
-                    },
-                    question: LocaleKeys.dont_have_an_account_yet.tr(),
-                    action: LocaleKeys.register.tr(),
+                      const SizedBox(height: AppSizes.spaceBetweenItems_8),
+                      AuthRedirectTextSpan(
+                        onTap: () {
+                          context.pushNamed(AppRoutes.signUpRoute);
+                        },
+                        question: LocaleKeys.dont_have_an_account_yet.tr(),
+                        action: LocaleKeys.register.tr(),
+                      ),
+                      const SizedBox(height: AppSizes.spaceBetweenItems_16),
+                    ],
                   ),
-                  const SizedBox(height: AppSizes.spaceBetweenItems_16),
                 ],
               ),
-            ],
+            ),
           ),
         ),
       ),
