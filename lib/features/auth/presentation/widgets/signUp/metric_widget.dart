@@ -94,13 +94,12 @@ class UserMetricWidget extends StatelessWidget {
                     const SizedBox(height: AppSizes.spaceBetweenItems_32),
                     CustomElevatedButton(
                       onPressed: () {
-                        if (valueNotifier.value < 0) {
-                          return;
+                        {
+                          pageController.nextPage(
+                            duration: const Duration(milliseconds: 500),
+                            curve: Curves.easeInOut,
+                          );
                         }
-                        pageController.nextPage(
-                          duration: const Duration(milliseconds: 500),
-                          curve: Curves.easeInOut,
-                        );
                       },
                       isLoading: false,
                       widget: Text(LocaleKeys.next.tr()),

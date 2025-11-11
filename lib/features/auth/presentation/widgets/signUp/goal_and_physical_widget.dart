@@ -87,12 +87,21 @@ class GoalAndPhysicalWidget<T> extends StatelessWidget {
                     CustomElevatedButton(
                       onPressed: () {
                         if (valueNotifier.value == null) {
-                          return;
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              backgroundColor: Theme.of(
+                                context,
+                              ).colorScheme.primary,
+                              content: const Text('Please select a value'),
+                              duration: const Duration(seconds: 1),
+                            ),
+                          );
+                        } else {
+                          pageController.nextPage(
+                            duration: const Duration(milliseconds: 500),
+                            curve: Curves.easeInOut,
+                          );
                         }
-                        pageController.nextPage(
-                          duration: const Duration(milliseconds: 500),
-                          curve: Curves.easeInOut,
-                        );
                       },
                       isLoading: false,
                       widget: Text(LocaleKeys.next.tr()),
