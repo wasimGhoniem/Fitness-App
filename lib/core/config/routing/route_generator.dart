@@ -3,6 +3,7 @@ import 'package:fitness_app/core/models/exercise_model.dart';
 import 'package:fitness_app/core/models/selected_food_category_model.dart';
 import 'package:fitness_app/features/auth/presentation/pages/sign_in_screen.dart';
 import 'package:fitness_app/features/auth/presentation/pages/sign_up_screen.dart';
+import 'package:fitness_app/features/changePassowrd/presentation/pages/change_password_screen.dart';
 import 'package:fitness_app/features/exercise/presentation/pages/exercise_screen.dart';
 import 'package:fitness_app/features/food/presentation/pages/food_screen.dart';
 import 'package:fitness_app/features/food_details/presentation/pages/food_details_screen.dart';
@@ -40,6 +41,8 @@ class RouteGenerator {
         );
       case AppRoutes.onBoardingRoute:
         return MaterialPageRoute(builder: (_) => const OnBoardingScreen());
+      case AppRoutes.changePasswordRoute:
+        return MaterialPageRoute(builder: (_) => const ChangePasswordScreen());
       default:
         return unDefinedRoute();
     }

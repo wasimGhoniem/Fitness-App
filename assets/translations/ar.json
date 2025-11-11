@@ -58,5 +58,13 @@
   "unit_g": "غم",
   "back": "السابق",
   "do_it": "ابدأ الآن",
-  "skip": "تخطي"
+  "skip": "تخطي",
+  "old_password": "كلمة المرور القديمة",
+  "new_password": "كلمة المرور الجديدة",
+  "confirm_password": "تأكيد كلمة المرور",
+  "password_hint": "تأكد أن كلمة المرور تحتوي على 8 أحرف أو أكثر",
+  "create_new_password": "إنشاء كلمة مرور جديدة",
+  "done": "تم",
+  "error": "خطأ",
+  "updated_successfully": "تم تحديث كلمة المرور بنجاح"
 }

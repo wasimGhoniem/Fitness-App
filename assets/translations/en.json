@@ -57,5 +57,13 @@
   "unit_g": "g",
   "back": "Back",
   "do_it": "Do It",
-  "skip": "Skip"
+  "skip": "Skip",
+  "old_password": "Old Password",
+  "new_password": "New Password",
+  "confirm_password": "Confirm Password",
+  "password_hint": "Make sure it's 8 characters or more",
+  "create_new_password": "Create New Password",
+  "done": "Done",
+  "error": "Error",
+  "updated_successfully": "Password updated successfully"
 }
