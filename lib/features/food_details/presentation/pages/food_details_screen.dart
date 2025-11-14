@@ -45,65 +45,63 @@ class _FoodDetailsScreenState extends State<FoodDetailsScreen> {
     return BlocProvider.value(
       value: _viewModel,
       child: Scaffold(
-        body: SafeArea(
-          child: BlocBuilder<FoodDetailsViewModel, FoodDetailsState>(
-            builder: (BuildContext context, FoodDetailsState state) {
-              if (state.isLoading) {
-                return AppShimmers.foodDetailsShimmer();
-              }
+        body: BlocBuilder<FoodDetailsViewModel, FoodDetailsState>(
+          builder: (BuildContext context, FoodDetailsState state) {
+            if (state.isLoading) {
+              return AppShimmers.foodDetailsShimmer();
+            }
 
-              if (state.failure != null) {
-                return FoodDetailsErrorView(
-                  message: state.failure!.errorMessage,
-                  onRetry: () {
-                    context.read<FoodDetailsViewModel>().doIntent(
-                      LoadFoodDetailsEvent(mealId: widget.mealId),
-                    );
-                  },
-                );
-              }
-
-              final MealEntity mealDetails = state.MealDetails!;
-
-              return GlassLayout(
-                backGroundImage: Assets.assetsImagesHomeBg,
-                child: SingleChildScrollView(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      FoodDetailsHeaderSection(
-                        videoUrl: mealDetails.youtubeUrl!,
-                        imageUrl: mealDetails.imageUrl!,
-                        title: mealDetails.name,
-                        subtitle: mealDetails.instructions!,
-                        onBack: () => context.pop(),
-                      ),
-                      const SizedBox(height: AppSizes.spaceBetweenItems_16),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: AppSizes.borderRadius_16,
-                        ),
-                        child: IngredientsTitle(
-                          textStyle: Theme.of(context).textTheme.bodyLarge!,
-                        ),
-                      ),
-                      const SizedBox(height: AppSizes.padding_12),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: AppSizes.borderRadius_16,
-                        ),
-                        child: IngredientsList(
-                          ingredients: mealDetails.ingredients,
-                          measures: mealDetails.measures,
-                        ),
-                      ),
-                      const SizedBox(height: AppSizes.spaceBetweenItems_16),
-                    ],
-                  ),
-                ),
+            if (state.failure != null) {
+              return FoodDetailsErrorView(
+                message: state.failure!.errorMessage,
+                onRetry: () {
+                  context.read<FoodDetailsViewModel>().doIntent(
+                    LoadFoodDetailsEvent(mealId: widget.mealId),
+                  );
+                },
               );
-            },
-          ),
+            }
+
+            final MealEntity mealDetails = state.MealDetails!;
+
+            return GlassLayout(
+              backGroundImage: Assets.assetsImagesHomeBg,
+              child: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    FoodDetailsHeaderSection(
+                      videoUrl: mealDetails.youtubeUrl!,
+                      imageUrl: mealDetails.imageUrl!,
+                      title: mealDetails.name,
+                      subtitle: mealDetails.instructions!,
+                      onBack: () => context.pop(),
+                    ),
+                    const SizedBox(height: AppSizes.spaceBetweenItems_16),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: AppSizes.borderRadius_16,
+                      ),
+                      child: IngredientsTitle(
+                        textStyle: Theme.of(context).textTheme.bodyLarge!,
+                      ),
+                    ),
+                    const SizedBox(height: AppSizes.padding_12),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: AppSizes.borderRadius_16,
+                      ),
+                      child: IngredientsList(
+                        ingredients: mealDetails.ingredients,
+                        measures: mealDetails.measures,
+                      ),
+                    ),
+                    const SizedBox(height: AppSizes.spaceBetweenItems_16),
+                  ],
+                ),
+              ),
+            );
+          },
         ),
       ),
     );

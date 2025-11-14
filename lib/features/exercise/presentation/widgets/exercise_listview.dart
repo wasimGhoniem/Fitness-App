@@ -53,41 +53,35 @@ class _ExerciseListViewState extends State<ExerciseListView> {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: MediaQuery.of(context).size.height / 1.32,
-      child: ListView.separated(
-        controller: _scrollController,
-        padding: const EdgeInsets.all(AppSizes.padding_16),
-        itemCount:
-            widget.exercises.length + (widget.isPaginationLoading ? 1 : 0),
-        separatorBuilder: (context, index) => const Divider(),
-        itemBuilder: (context, index) {
-          if (index == widget.exercises.length && widget.isPaginationLoading) {
-            return Padding(
-              padding: const EdgeInsets.symmetric(
-                vertical: AppSizes.padding_16,
+    return ListView.separated(
+      controller: _scrollController,
+      padding: const EdgeInsets.all(AppSizes.padding_16),
+      itemCount: widget.exercises.length + (widget.isPaginationLoading ? 1 : 0),
+      separatorBuilder: (context, index) => const Divider(),
+      itemBuilder: (context, index) {
+        if (index == widget.exercises.length && widget.isPaginationLoading) {
+          return Padding(
+            padding: const EdgeInsets.symmetric(vertical: AppSizes.padding_16),
+            child: Center(
+              child: CircularProgressIndicator(
+                color: Theme.of(context).colorScheme.primary,
               ),
-              child: Center(
-                child: CircularProgressIndicator(
-                  color: Theme.of(context).colorScheme.primary,
-                ),
-              ),
-            );
-          }
-          final exercise = widget.exercises[index];
-          final videoId = YoutubePlayer.convertUrlToId(exercise.videoUrl) ?? '';
-          final thumbnail = YoutubePlayer.getThumbnail(videoId: videoId);
-
-          return GestureDetector(
-            child: ExerciseItem(
-              isLoading: widget.isLoading,
-              thumbnail: thumbnail,
-              exercises: exercise,
-              videoId: videoId,
             ),
           );
-        },
-      ),
+        }
+        final exercise = widget.exercises[index];
+        final videoId = YoutubePlayer.convertUrlToId(exercise.videoUrl) ?? '';
+        final thumbnail = YoutubePlayer.getThumbnail(videoId: videoId);
+
+        return GestureDetector(
+          child: ExerciseItem(
+            isLoading: widget.isLoading,
+            thumbnail: thumbnail,
+            exercises: exercise,
+            videoId: videoId,
+          ),
+        );
+      },
     );
   }
 }

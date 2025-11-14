@@ -40,13 +40,16 @@ class _ExerciseScreenBodyState extends State<ExerciseScreenBody> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            ExerciseHeader(
-              exerciseModel: widget.exerciseModel,
-              exerciseViewModel: _exerciseViewModel,
+            Expanded(
+              flex: 3,
+              child: ExerciseHeader(
+                exerciseModel: widget.exerciseModel,
+                exerciseViewModel: _exerciseViewModel,
+              ),
             ),
             const SizedBox(height: AppSizes.spaceBetweenItems_8),
-            const ExerciseFooter(),
-            const SizedBox(height: AppSizes.spaceBetweenItems_40),
+            const Expanded(flex: 4, child: ExerciseFooter()),
+            const SizedBox(height: AppSizes.spaceBetweenItems_24),
           ],
         ),
       ),

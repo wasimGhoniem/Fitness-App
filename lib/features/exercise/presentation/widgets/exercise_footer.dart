@@ -12,8 +12,12 @@ class ExerciseFooter extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: AppSizes.padding_16),
       child: GlassContainer(
         width: double.infinity,
+        borderRadius: BorderRadius.only(
+          topRight: Radius.circular(AppSizes.borderRadius_50),
+          topLeft: Radius.circular(AppSizes.borderRadius_50),
+        ),
         contentPadding: EdgeInsetsGeometry.zero,
-        body: [ExerciseListViewBlocBuilder()],
+        body: [Expanded(child: ExerciseListViewBlocBuilder())],
       ),
     );
   }

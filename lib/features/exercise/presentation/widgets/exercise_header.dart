@@ -33,6 +33,8 @@ class ExerciseHeader extends StatelessWidget {
                 const Center(child: CircularProgressIndicator()),
             errorWidget: (context, url, error) => const Icon(Icons.error),
             imageUrl: exerciseModel.image,
+            width: double.infinity,
+            fit: BoxFit.cover,
           ),
           Positioned.fill(
             child: Container(
