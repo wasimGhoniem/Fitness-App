@@ -10,6 +10,7 @@ import 'package:fitness_app/core/utils/constants/app_constants.dart';
 import 'package:fitness_app/core/utils/constants/sizes.dart';
 import 'package:fitness_app/firebase_options.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:responsive_framework/responsive_framework.dart';
@@ -47,20 +48,25 @@ class FitnessApp extends StatelessWidget {
           return ResponsiveBreakpoints.builder(
             breakpoints: AppSizes.appBreakPoints,
             breakpointsLandscape: AppSizes.appLandscapeBreakPoints,
-            child: MaterialApp(
-              initialRoute: initialRoute,
-              debugShowCheckedModeBanner: false,
-              localizationsDelegates: context.localizationDelegates,
-              supportedLocales: context.supportedLocales,
-              locale: localeState,
-              theme: AppThemeLight.lightTheme,
-              onGenerateRoute: RouteGenerator.getRoute,
-              builder: (context, child) => ResponsiveScaledBox(
-                width: ResponsiveValue<double>(
-                  context,
-                  conditionalValues: AppSizes.conditionalValues,
-                ).value,
-                child: child!,
+            child: AnnotatedRegion(
+              value: SystemUiOverlayStyle(
+                statusBarIconBrightness: AppThemeLight.lightTheme.brightness,
+              ),
+              child: MaterialApp(
+                initialRoute: initialRoute,
+                debugShowCheckedModeBanner: false,
+                localizationsDelegates: context.localizationDelegates,
+                supportedLocales: context.supportedLocales,
+                locale: localeState,
+                theme: AppThemeLight.lightTheme,
+                onGenerateRoute: RouteGenerator.getRoute,
+                builder: (context, child) => ResponsiveScaledBox(
+                  width: ResponsiveValue<double>(
+                    context,
+                    conditionalValues: AppSizes.conditionalValues,
+                  ).value,
+                  child: child!,
+                ),
               ),
             ),
           );
