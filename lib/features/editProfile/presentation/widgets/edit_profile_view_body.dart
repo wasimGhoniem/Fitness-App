@@ -44,7 +44,7 @@ class EditProfileViewBody extends StatelessWidget {
         }
       },
       child: GlassLayout(
-        backGroundImage: Assets.assetsImagesHomeBg,
+        backGroundImage: Assets.assetsImagesHomeBgBigWidth,
         child: SingleChildScrollView(
           child: Column(
             children: [

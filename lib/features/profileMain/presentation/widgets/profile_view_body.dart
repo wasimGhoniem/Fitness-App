@@ -26,17 +26,17 @@ class ProfileViewBody extends StatelessWidget {
         }
       },
       child: const GlassLayout(
-        backGroundImage: Assets.assetsImagesHomeBg,
+        backGroundImage: Assets.assetsImagesHomeBgBigWidth,
         child: SingleChildScrollView(
           child: Column(
             children: [
               SizedBox(height: AppSizes.spaceBetweenItems_40),
               ProfileAppBar(),
               SizedBox(height: AppSizes.spaceBetweenItems_40),
-          
+
               ProfileHeaderBlocBuilder(),
               SizedBox(height: AppSizes.spaceBetweenItems_40),
-          
+
               ProfileSettingsMenu(),
               SizedBox(height: 200),
             ],
