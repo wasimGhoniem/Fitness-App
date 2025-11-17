@@ -174,7 +174,46 @@ lib/
 
 ## 📸 لقطات الشاشة / Screenshots
 
-*Screenshots will be uploaded later*
+
+### 🚀 Onboarding / شاشات الترحيب والتعريف بالتطبيق
+<img width="250" height="2359" alt="Image" src="https://github.com/user-attachments/assets/b88bb8ae-d3f8-46cd-aa7a-75dd7744178c" />
+<img width="250" height="2359" alt="Image" src="https://github.com/user-attachments/assets/f1879ed3-8d4f-42f5-b8ef-89f99f57b7a9" />
+<img width="250" height="2359" alt="Image" src="https://github.com/user-attachments/assets/e229d20e-224a-4e1a-b1dc-1bca6bdc747e" />
+
+
+### 🔐 Authentication Screens / شاشات المصادقة
+<img width="250" src="https://github.com/user-attachments/assets/d288856d-dd25-4391-a6de-ea1a2ccf6a54" />
+<img width="250" src="https://github.com/user-attachments/assets/30a79cd2-fc91-42f1-b34b-a31170cc2b87" />
+<img width="250" height="2359" alt="Image" src="https://github.com/user-attachments/assets/adda0c17-f5eb-4c9d-a05a-4c7a871e2c42" />
+<img width="250" src="https://github.com/user-attachments/assets/e0eb4f1a-2c23-42f4-bee0-cae347e8b7b7" />
+<img width="250" src="https://github.com/user-attachments/assets/7dd8651b-e2ed-4e1d-ae13-4e2a10ff8213" />
+<img width="250" src="https://github.com/user-attachments/assets/e13d0845-37a6-40eb-bc7b-57449b55d122" />
+<img width="250" src="https://github.com/user-attachments/assets/e8557acc-a4f0-41a4-bf51-ec7e6e488fef" />
+<img width="250" src="https://github.com/user-attachments/assets/b873c1c9-edc5-401f-bb4d-5f3019a2f488" />
+
+
+### 📱 Main Application Screens / الشاشات الرئيسية
+<img width="250" height="2359" alt="Image" src="https://github.com/user-attachments/assets/46d89402-d444-4995-abf2-1ecf2cc4a08f" />
+<img width="250" height="2359" alt="Image" src="https://github.com/user-attachments/assets/ae86230b-9191-4eb4-9752-a6dd5bbc824f" />
+<img width="250" height="2359" alt="Image" src="https://github.com/user-attachments/assets/3c6a85ff-a151-46af-beca-cd22833c59bb" />
+<img width="250" height="2359" alt="Image" src="https://github.com/user-attachments/assets/4b25e473-a2bf-4977-88b6-27d0295f8389" />
+
+### 🏋️ Exercise Screen / شاشة التمرين
+<img width="250" height="2359" alt="Image" src="https://github.com/user-attachments/assets/6a7da908-3cc5-486c-b260-f97663b0c8b5" />
+<img width="250" height="2359" alt="Image" src="https://github.com/user-attachments/assets/6b1aa642-c57e-4bea-a4aa-4d994c82ab7b" />
+
+
+### 🔧 Profile Editing / تعديل الملف الشخصي
+<img width="250" height="2359" alt="Image" src="https://github.com/user-attachments/assets/0503c2bf-fe33-4f7b-9da6-d46031392395" />
+<img width="250" height="2359" alt="Image" src="https://github.com/user-attachments/assets/f61c1a37-52eb-42f0-b131-a8141ccc56d5" />
+<img width="250" height="2359" alt="Image" src="https://github.com/user-attachments/assets/2722e241-1724-4822-bd8d-72abb112fd30" />
+<img width="250" height="2359" alt="Image" src="https://github.com/user-attachments/assets/f1fc96f2-fbed-4cb4-a222-16251809fe93" />
+<img width="250" height="2359" alt="Image" src="https://github.com/user-attachments/assets/d0f48368-cb2c-4c03-81c9-11d00f9a7bf9" />
+<img width="250" height="2359" alt="Image" src="https://github.com/user-attachments/assets/cea2aac3-7e18-4c86-95fa-b53972a9e919" />
+<img width="250" height="2359" alt="Image" src="https://github.com/user-attachments/assets/ea59ec24-9fee-435d-9510-b5c8b8b9d4ee" />
+<img width="250" height="2359" alt="Image" src="https://github.com/user-attachments/assets/290d9065-bc9f-4d24-89c9-21613c05f11d" />
+<img width="250" height="2359" alt="Image" src="https://github.com/user-attachments/assets/0b24d102-1edd-4304-80d9-8a820ab1a1ed" />
+<img width="250" height="2359" alt="Image" src="https://github.com/user-attachments/assets/a774ac54-1dab-4b2b-a860-3e9ad486b5aa" />
 
 ## 🚀 المميزات التقنية / Technical Features
 
