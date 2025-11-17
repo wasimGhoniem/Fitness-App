@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:fitness_app/core/di/di.dart';
 import 'package:fitness_app/core/functions/validators.dart';
+import 'package:fitness_app/core/helpers/routing_extensions.dart';
 import 'package:fitness_app/core/localization/locale_keys.g.dart';
 import 'package:fitness_app/core/utils/constants/app_assets.dart';
 import 'package:fitness_app/core/utils/constants/sizes.dart';
@@ -11,6 +12,7 @@ import 'package:fitness_app/features/changePassowrd/presentation/veiwModel/chnag
 import 'package:fitness_app/features/changePassowrd/presentation/widgets/custom_button_bloc_consumer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/svg.dart';
 
 class ChangePasswordScreenBody extends StatefulWidget {
   const ChangePasswordScreenBody({super.key});
@@ -51,11 +53,20 @@ class _ChangePasswordScreenBodyState extends State<ChangePasswordScreenBody> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 const SizedBox(height: AppSizes.spaceBetweenItems_48),
-                Align(
-                  alignment: Alignment.center,
-                  child: Image.asset(
-                    Assets.assetsIconsFitnessAppIcon,
-                    width: 70,
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: AppSizes.padding_16,
+                  ),
+                  child: Row(
+                    children: [
+                      GestureDetector(
+                        onTap: () => context.pop(),
+                        child: SvgPicture.asset(Assets.assetsIconsBackSvg),
+                      ),
+                      const Spacer(),
+                      Image.asset(Assets.assetsIconsFitnessAppIcon, width: 70),
+                      const Spacer(),
+                    ],
                   ),
                 ),
                 const SizedBox(height: AppSizes.spaceBetweenItems_48),
