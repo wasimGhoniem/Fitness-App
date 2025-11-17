@@ -1,8 +1,8 @@
 import 'package:fitness_app/core/errors/api_results.dart';
 import 'package:fitness_app/core/errors/failure.dart';
-import 'package:fitness_app/features/food_details/data/dataSources/food_details_remote_data_source.dart';
-import 'package:fitness_app/features/food_details/data/repositories/food_details_repository_impl.dart';
-import 'package:fitness_app/features/food_details/domain/entities/meal_details_response_entity.dart';
+import 'package:fitness_app/features/foodDetails/data/dataSources/food_details_remote_data_source.dart';
+import 'package:fitness_app/features/foodDetails/data/repositories/food_details_repository_impl.dart';
+import 'package:fitness_app/features/foodDetails/domain/entities/meal_details_response_entity.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';

@@ -21,4 +21,15 @@ class AuthLocalDataSourceImpl implements AuthLocalDataSource {
       return ApiErrorResult<void>(failure: failure);
     }
   }
+
+  @override
+  Future<ApiResult<void>> deleteToken() async {
+    try {
+      await _storage.delete(key: AppConstants.token);
+      return ApiSuccessResult<void>(data: null);
+    } catch (e) {
+      final Failure failure = Failure(errorMessage: e.toString());
+      return ApiErrorResult<void>(failure: failure);
+    }
+  }
 }

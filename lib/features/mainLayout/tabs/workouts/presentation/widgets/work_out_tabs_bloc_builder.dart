@@ -2,7 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:fitness_app/core/localization/locale_keys.g.dart';
 import 'package:fitness_app/core/utils/constants/app_constants.dart';
 import 'package:fitness_app/core/utils/constants/sizes.dart';
-import 'package:fitness_app/features/food/presentation/widgets/app_shimmers.dart';
+import 'package:fitness_app/core/widgets/app_shimmers.dart';
 import 'package:fitness_app/features/food/presentation/widgets/build_tab_bar.dart';
 import 'package:fitness_app/features/mainLayout/tabs/workouts/presentation/viewModel/work_out_events.dart';
 import 'package:fitness_app/features/mainLayout/tabs/workouts/presentation/viewModel/work_out_state.dart';

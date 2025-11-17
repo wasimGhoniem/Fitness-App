@@ -11,4 +11,6 @@ abstract interface class AuthRepo {
   Future<ApiResult<void>> signUp(SignUpReqModel signUpReqModel);
 
   Future<ApiResult<void>> writeToken({required String token});
+
+  Future<ApiResult<void>> deleteToken();
 }

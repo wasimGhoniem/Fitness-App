@@ -1,11 +1,10 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:fitness_app/core/localization/locale_keys.g.dart';
 import 'package:fitness_app/core/utils/constants/sizes.dart';
+import 'package:fitness_app/core/widgets/app_shimmers.dart';
 import 'package:fitness_app/features/food/presentation/viewModel/food_event.dart';
 import 'package:fitness_app/features/food/presentation/viewModel/food_state.dart';
 import 'package:fitness_app/features/food/presentation/viewModel/food_view_model.dart';
-import 'package:fitness_app/features/food/presentation/widgets/app_shimmers.dart';
-
 import 'package:fitness_app/features/food/presentation/widgets/meals_grid_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

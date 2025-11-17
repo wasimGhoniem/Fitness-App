@@ -28,4 +28,7 @@ abstract class ApiConstants {
   static const String mealsDetails = 'lookup.php';
   static const String mealsIdQuery = 'i';
   static const String changePasswordEndPoint = 'auth/change-password';
+  static const String getLoggedUserData = 'auth/profile-data';
+  static const String editProfile = 'auth/editProfile';
+  static const String uploadPhoto = 'auth/upload-photo';
 }

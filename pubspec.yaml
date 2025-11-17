@@ -68,6 +68,7 @@ flutter:
     - assets/icons/
     - assets/translations/
     - .env
+    - assets/docs/
   fonts:
     - family: BalooThambi2
       fonts:

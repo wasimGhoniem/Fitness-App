@@ -1,11 +1,11 @@
 import 'package:fitness_app/core/errors/api_results.dart';
 import 'package:fitness_app/core/errors/failure.dart';
-import 'package:fitness_app/features/food_details/domain/entities/meal_details_response_entity.dart';
-import 'package:fitness_app/features/food_details/domain/entities/meal_entity.dart';
-import 'package:fitness_app/features/food_details/domain/useCases/get_food_details_use_case.dart';
-import 'package:fitness_app/features/food_details/presentation/viewModel/food_details_event.dart';
-import 'package:fitness_app/features/food_details/presentation/viewModel/food_details_state.dart';
-import 'package:fitness_app/features/food_details/presentation/viewModel/food_details_view_model.dart';
+import 'package:fitness_app/features/foodDetails/domain/entities/meal_details_response_entity.dart';
+import 'package:fitness_app/features/foodDetails/domain/entities/meal_entity.dart';
+import 'package:fitness_app/features/foodDetails/domain/useCases/get_food_details_use_case.dart';
+import 'package:fitness_app/features/foodDetails/presentation/viewModel/food_details_event.dart';
+import 'package:fitness_app/features/foodDetails/presentation/viewModel/food_details_state.dart';
+import 'package:fitness_app/features/foodDetails/presentation/viewModel/food_details_view_model.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
