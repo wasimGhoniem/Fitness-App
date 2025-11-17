@@ -6,6 +6,7 @@ import 'package:fitness_app/core/helpers/dialogue_utils.dart';
 import 'package:fitness_app/core/helpers/routing_extensions.dart';
 import 'package:fitness_app/core/localization/locale_keys.g.dart';
 import 'package:fitness_app/core/utils/constants/app_assets.dart';
+import 'package:fitness_app/core/utils/constants/sizes.dart';
 import 'package:fitness_app/core/widgets/glass_container.dart';
 import 'package:fitness_app/features/profileMain/presentation/viewModels/profileViewModel/profile_main_event.dart';
 import 'package:fitness_app/features/profileMain/presentation/viewModels/profileViewModel/profile_main_view_model.dart';
@@ -23,6 +24,10 @@ class ProfileSettingsMenu extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0),
       child: GlassContainer(
+        contentPadding: const EdgeInsetsGeometry.symmetric(
+          horizontal: AppSizes.padding_16,
+          vertical: AppSizes.padding_24,
+        ),
         width: double.infinity,
         body: [
           ClipRRect(

@@ -6,6 +6,7 @@ import 'package:fitness_app/core/widgets/custom_elevated_button.dart';
 import 'package:fitness_app/core/widgets/custom_text.dart';
 import 'package:fitness_app/core/widgets/glass_container.dart';
 import 'package:fitness_app/core/widgets/glass_layout.dart';
+import 'package:fitness_app/features/auth/presentation/widgets/signUp/custom_appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:numberpicker/numberpicker.dart';
@@ -41,7 +42,10 @@ class WeightScaleWidget extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  const SizedBox(height: AppSizes.spaceBetweenItems_40),
+                  const CustomAppBarr(),
                   const Spacer(),
+
                   CustomText(
                     text: question,
                     style: Theme.of(
