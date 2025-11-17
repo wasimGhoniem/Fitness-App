@@ -1,12 +1,13 @@
 import 'package:fitness_app/core/classes/remote_executor.dart';
 import 'package:fitness_app/core/errors/api_results.dart';
 import 'package:fitness_app/core/errors/failure.dart';
-import 'package:fitness_app/features/food_details/api/client/food_details_api_service.dart';
-import 'package:fitness_app/features/food_details/api/dataSources/food_details_remote_data_source_impl.dart';
-import 'package:fitness_app/features/food_details/api/model/meal_details_response_dto.dart';
-import 'package:fitness_app/features/food_details/api/model/meal_dto.dart';
-import 'package:fitness_app/features/food_details/data/dataSources/food_details_remote_data_source.dart';
-import 'package:fitness_app/features/food_details/domain/entities/meal_details_response_entity.dart';
+import 'package:fitness_app/features/foodDetails/api/client/food_details_api_service.dart';
+import 'package:fitness_app/features/foodDetails/api/dataSources/food_details_remote_data_source_impl.dart';
+import 'package:fitness_app/features/foodDetails/api/model/meal_details_response_dto.dart';
+import 'package:fitness_app/features/foodDetails/api/model/meal_dto.dart';
+import 'package:fitness_app/features/foodDetails/data/dataSources/food_details_remote_data_source.dart';
+import 'package:fitness_app/features/foodDetails/domain/entities/meal_details_response_entity.dart';
+
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';

@@ -22,4 +22,9 @@ abstract class AppConstants {
   static const String firebaseRealTimeDatabase = 'firebaseRealTimeDatabase';
   static const String envKey = '.env';
   static const String abdominalsId = '67c79f3526895f87ce0aa96b';
+  static const String helpPath = 'assets/docs/help.json';
+  static const String privacyAndSecurityPath =
+      'assets/docs/privacy_and_security.json';
+  static const String securityRolesConfigPath =
+      'assets/docs/security_roles_config.json';
 }

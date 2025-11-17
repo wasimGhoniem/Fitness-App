@@ -1,6 +1,7 @@
 import 'package:fitness_app/features/mainLayout/tabs/explore/presentation/pages/explore_screen.dart';
 import 'package:fitness_app/features/mainLayout/tabs/workouts/presentation/pages/work_outs_screen.dart';
 import 'package:fitness_app/features/mainLayout/widgets/app_bottom_nav_bar.dart';
+import 'package:fitness_app/features/profileMain/presentation/pages/profile_screen.dart';
 import 'package:flutter/material.dart';
 
 class MainLayout extends StatefulWidget {
@@ -23,7 +24,7 @@ class _MainLayoutState extends State<MainLayout> {
     ExploreScreen(),
     Text('ChatPage()'),
     WorkOutsScreen(),
-    Text('ProfilePage()'),
+    ProfileScreen(),
   ];
 
   @override

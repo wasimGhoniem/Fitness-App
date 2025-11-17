@@ -30,4 +30,9 @@ class AuthRepoImpl implements AuthRepo {
   Future<ApiResult<void>> writeToken({required String token}) async {
     return await _authLocalDataSource.WriteToken(token: token);
   }
+
+  @override
+  Future<ApiResult<void>> deleteToken() async {
+    return await _authLocalDataSource.deleteToken();
+  }
 }

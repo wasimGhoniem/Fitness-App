@@ -30,4 +30,11 @@ extension ActivityLevelExtension on ActivityLevel {
         return 'level5';
     }
   }
+
+  static ActivityLevel fromApiValue(String value) {
+    return ActivityLevel.values.firstWhere(
+          (e) => e.apiValue.toLowerCase() == value.toLowerCase(),
+      orElse: () => ActivityLevel.rookie,
+    );
+  }
 }

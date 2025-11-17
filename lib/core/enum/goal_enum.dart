@@ -21,4 +21,15 @@ extension GoalEnumExtension on GoalEnum {
         return 'Learn The Basic';
     }
   }
+
+  String get apiValue {
+    return name;
+  }
+
+  static GoalEnum fromApiValue(String value) {
+    return GoalEnum.values.firstWhere(
+          (e) => e.apiValue.toLowerCase() == value.toLowerCase(),
+      orElse: () => GoalEnum.loseWeight,
+    );
+  }
 }
