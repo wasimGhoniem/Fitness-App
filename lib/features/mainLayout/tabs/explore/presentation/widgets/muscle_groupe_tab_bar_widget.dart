@@ -24,6 +24,9 @@ class WorkOutsTaps extends StatelessWidget {
             padding: const EdgeInsets.symmetric(
               horizontal: AppSizes.padding_16,
             ),
+            labelPadding: const EdgeInsets.symmetric(
+              horizontal: AppSizes.padding_12,
+            ),
             isScrollable: true,
             tabs: musclesGroup.map((muscle) => Tab(text: muscle.name)).toList(),
           ),

@@ -67,7 +67,7 @@ class MealsBlocBuilder extends StatelessWidget {
 
         final meals = state.mealsResponse!.meals!;
 
-        return MealsGridView(meals: meals);
+        return Expanded(child: MealsGridView(meals: meals));
       },
     );
   }

@@ -1,7 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:fitness_app/core/Widgets/custom_elevated_button.dart';
-import 'package:fitness_app/core/enum/activity_lvl_enum.dart';
-import 'package:fitness_app/core/enum/goal_enum.dart';
 import 'package:fitness_app/core/helpers/dialogue_utils.dart';
 import 'package:fitness_app/core/localization/locale_keys.g.dart';
 import 'package:fitness_app/core/utils/constants/app_assets.dart';
@@ -24,10 +22,9 @@ class EditProfileViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     final viewModel = context.read<EditProfileViewModel>();
     return BlocListener<EditProfileViewModel, EditProfileState>(
-      listenWhen: ( previous, current) {
+      listenWhen: (previous, current) {
         return previous.editProfileResponse != current.editProfileResponse ||
             previous.editProfileFailure != current.editProfileFailure;
-
       },
       listener: (context, state) {
         if (state.editProfileResponse != null) {
@@ -60,38 +57,52 @@ class EditProfileViewBody extends StatelessWidget {
               const EditProfileForm(),
               const SizedBox(height: AppSizes.spaceBetweenItems_40),
               Padding(
-                padding:  const EdgeInsets.symmetric(horizontal: AppSizes.padding_32),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: AppSizes.padding_32,
+                ),
 
-                child: BlocBuilder<EditProfileViewModel,EditProfileState>(
-                  builder: (context,state){
+                child: BlocBuilder<EditProfileViewModel, EditProfileState>(
+                  builder: (context, state) {
                     return CustomElevatedButton(
-                      onPressed:state.isDataChanged?
-                          () {
-                        context.read<EditProfileViewModel>().doIntend(
-                          EditProfileSubmitEvent(
-                            requestEntity: EditProfileRequestEntity(
-                              firstName:
-                              viewModel.editProfileFirstNameController.text,
-                              lastName: viewModel.editProfileLastNameController.text,
-                              email: viewModel.editProfileEmailController.text,
-                              activityLevel:
-                              viewModel.editProfileActivityLevelController.text,
-                              goal: viewModel.editProfileGoalController.text,
-                              weight: int.tryParse(viewModel.editProfileWeightController.text) ?? 0,
-                            ),
-                          ),
-                        );
-                      }:null,
+                      onPressed: state.isDataChanged
+                          ? () {
+                              context.read<EditProfileViewModel>().doIntend(
+                                EditProfileSubmitEvent(
+                                  requestEntity: EditProfileRequestEntity(
+                                    firstName: viewModel
+                                        .editProfileFirstNameController
+                                        .text,
+                                    lastName: viewModel
+                                        .editProfileLastNameController
+                                        .text,
+                                    email: viewModel
+                                        .editProfileEmailController
+                                        .text,
+                                    activityLevel: viewModel
+                                        .editProfileActivityLevelController
+                                        .text,
+                                    goal: viewModel
+                                        .editProfileGoalController
+                                        .text,
+                                    weight:
+                                        int.tryParse(
+                                          viewModel
+                                              .editProfileWeightController
+                                              .text,
+                                        ) ??
+                                        0,
+                                  ),
+                                ),
+                              );
+                            }
+                          : null,
                       isLoading: state.isEditProfileLoading,
                       widget: const Text('Update'),
                     );
                   },
-
-
                 ),
               ),
               const SizedBox(height: AppSizes.spaceBetweenItems_40),
-
             ],
           ),
         ),

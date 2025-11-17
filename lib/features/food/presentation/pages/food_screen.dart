@@ -29,7 +29,11 @@ class _FoodScreenState extends State<FoodScreen> {
   @override
   void initState() {
     _viewModel = getIt<FoodViewModel>();
-    _viewModel.doIntent(LoadAllFoodDataEvent(mealCategoryName: 'Seafood'));
+    _viewModel.doIntent(
+      LoadAllFoodDataEvent(
+        mealCategoryName: widget.selectedFoodCategoryModel.mealCategoryName,
+      ),
+    );
     super.initState();
   }
 
@@ -46,11 +50,10 @@ class _FoodScreenState extends State<FoodScreen> {
       child: Scaffold(
         body: GlassLayout(
           backGroundImage: Assets.assetsImagesHomeBg,
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
+          child: CustomScrollView(
+            slivers: [
+              SliverToBoxAdapter(
+                child: Padding(
                   padding: const EdgeInsets.symmetric(
                     horizontal: AppSizes.padding_16,
                   ),
@@ -78,12 +81,20 @@ class _FoodScreenState extends State<FoodScreen> {
                             widget.selectedFoodCategoryModel.selectedIndex,
                       ),
                       const SizedBox(height: AppSizes.spaceBetweenItems_24),
-                      const SizedBox(height: 500, child: MealsBlocBuilder()),
                     ],
                   ),
                 ),
-              ],
-            ),
+              ),
+              const SliverFillRemaining(
+                hasScrollBody: true,
+                child: Padding(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: AppSizes.padding_16,
+                  ),
+                  child: MealsBlocBuilder(),
+                ),
+              ),
+            ],
           ),
         ),
       ),

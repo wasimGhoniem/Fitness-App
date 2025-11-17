@@ -80,7 +80,7 @@ class _ExploreScreenBodyState extends State<ExploreScreenBody> {
                 title: LocaleKeys.recommended_for_you.tr(),
                 onTap: () {
                   final arg = SelectedFoodCategoryModel(
-                    mealCategoryName: '',
+                    mealCategoryName: 'Beef',
                     selectedIndex: 0,
                   );
                   context.pushNamed(AppRoutes.foodRoute, arguments: arg);
